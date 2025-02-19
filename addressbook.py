@@ -4,6 +4,19 @@ class ContactPerson:
     """
     Description:
         Represents a contact person with personal details.
+    
+    Parameters:
+        first_name (str): First name of the contact.
+        last_name (str): Last name of the contact.
+        address (str): Address of the contact.
+        city (str): City of residence.
+        state (str): State of residence.
+        zip_code (int): 6-digit ZIP code.
+        phone (int): Phone number (10 or 12 digits).
+        email (str): Email address.
+    
+    Raises:
+        ValueError: If any of the input validations fail.
     """
 
     def __init__(self, first_name, last_name, address, city, state, zip_code, phone, email):
@@ -11,22 +24,22 @@ class ContactPerson:
             if not first_name or not last_name:
                 raise ValueError("First and last name cannot be empty.")
 
-            self.first_name = first_name
-            self.last_name = last_name
-            self.address = address1
-            self.city = city
-            self.state = state
-            
-            if not str(zip_code).isdigit() or len(str(zip_code)) != 5:
+            if not isinstance(zip_code, int) or len(str(zip_code)) != 6:
                 raise ValueError("ZIP code must be a 5-digit number.")
-            self.zip_code = int(zip_code)
 
-            if not str(phone).isdigit() or len(str(phone)) not in (10, 12):
+            if not isinstance(phone, int) or len(str(phone)) not in (10, 12):
                 raise ValueError("Phone number must be 10 or 12 digits long.")
-            self.phone = int(phone)
 
             if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
                 raise ValueError("Invalid email format.")
+
+            self.first_name = first_name
+            self.last_name = last_name
+            self.address = address
+            self.city = city
+            self.state = state
+            self.zip_code = zip_code
+            self.phone = phone
             self.email = email
 
         except ValueError as e:
@@ -34,6 +47,14 @@ class ContactPerson:
             raise
 
     def __str__(self):
+        """
+        Description:
+            Returns a formatted string representation of the contact.
+        parameter :
+        none
+        Returns:
+            str: Formatted contact details.
+        """
         return (f"Name: {self.first_name} {self.last_name}\n"
                 f"Address: {self.address}, {self.city}, {self.state}, {self.zip_code}\n"
                 f"Phone: {self.phone}\n"
@@ -44,14 +65,28 @@ class AddressBook:
     """
     Description:
         Manages multiple contact entries in an address book.
+    Parameter:
+        none
+    Return:
     """
 
     def __init__(self):
+        """
+        Description:
+            Initializes an empty address book.
+        """
         self.contacts = {}
 
     def add_contact(self, contact):
         """
-        Adds a new contact to the address book.
+        Description:
+            Adds a new contact to the address book.
+        
+        Parameters:
+            contact (ContactPerson): Contact object to be added.
+        
+        Raises:
+            TypeError: If the provided contact is not a ContactPerson instance.
         """
         try:
             if not isinstance(contact, ContactPerson):
@@ -63,13 +98,13 @@ class AddressBook:
             else:
                 self.contacts[full_name] = contact
                 print(f"\nContact '{full_name}' added successfully!\n")
-
         except Exception as e:
             print(f"Error adding contact: {e}")
 
     def display_contacts(self):
         """
-        Displays all contacts in the address book.
+        Description:
+            Displays all contacts in the address book.
         """
         try:
             if not self.contacts:
@@ -83,13 +118,23 @@ class AddressBook:
 
 class AddressBookMain:
     """
-    Provides the main interface for the address book system.
+    Description:
+        Provides the main interface for the address book system.
     """
 
     @staticmethod
     def get_validated_input(prompt, validation_func, error_message):
         """
-        Handles input validation for various fields.
+        Description:
+            Gets user input and validates it using a provided function.
+        
+        Parameters:
+            prompt (str): The message displayed to the user.
+            validation_func (function): A function that validates the input.
+            error_message (str): The error message displayed if validation fails.
+        
+        Returns:
+            str: Validated user input.
         """
         while True:
             try:
@@ -104,7 +149,11 @@ class AddressBookMain:
     @staticmethod
     def create_contact():
         """
-        Collects user input to create a new contact.
+        Description:
+            Collects user input and creates a new contact.
+        
+        Returns:
+            ContactPerson: A newly created contact object.
         """
         try:
             first_name = input("Enter First Name: ").strip()
@@ -113,21 +162,18 @@ class AddressBookMain:
             city = input("Enter City: ").strip()
             state = input("Enter State: ").strip()
 
-            # Validate ZIP Code (5-digit)
             zip_code = AddressBookMain.get_validated_input(
-                "Enter ZIP Code (5 digits): ",
-                lambda z: z.isdigit() and len(z) == 5,
-                "Invalid ZIP Code! It must be a 5-digit number."
+                "Enter ZIP Code (6 digits): ",
+                lambda z: z.isdigit() and len(z) == 6,
+                "Invalid ZIP Code! It must be a 6-digit number."
             )
 
-            # Validate Phone Number (10 or 12 digits)
             phone = AddressBookMain.get_validated_input(
                 "Enter Phone Number (10 or 12 digits): ",
                 lambda p: p.isdigit() and len(p) in (10, 12),
                 "Invalid Phone Number! It must be 10 or 12 digits long."
             )
 
-            # Validate Email
             email = AddressBookMain.get_validated_input(
                 "Enter Email: ",
                 lambda e: re.match(r"[^@]+@[^@]+\.[^@]+", e),
@@ -139,33 +185,24 @@ class AddressBookMain:
         except Exception as e:
             print(f"Error creating contact: {e}")
             return None
-"""
-testing :
-contact = ContactPerson("John", "Doe", "123 Main St", "New York", "NY", 10001, 9876543210, "john@example.com")
-print(contact)
 
-# Create an address book and add a contact
-address_book = AddressBook()
-address_book.add_contact(contact)
-
-address_book.display_contacts()
-"""
 
 def main():
     """
-    Entry point of the program. Manages address book operations.
+    Description:
+        Entry point of the program. Manages address book operations.
     """
     print("\nWelcome to the Address Book System!\n")
     
     address_book = AddressBook()
     
     while True:
-        print("\nMenu:")
-        print("1. Add Contact")
-        print("2. Display Contacts")
-        print("3. Exit")
-
         try:
+            print("\nMenu:")
+            print("1. Add Contact")
+            print("2. Display Contacts")
+            print("3. Exit")
+
             choice = input("Enter your choice: ").strip()
 
             if choice == "1":
@@ -179,7 +216,6 @@ def main():
                 break
             else:
                 print("Invalid choice! Please select a valid option.")
-
         except Exception as e:
             print(f"Unexpected error: {e}")
 
