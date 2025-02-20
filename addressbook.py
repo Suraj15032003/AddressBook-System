@@ -1,13 +1,13 @@
 import re
 import logging
 
-# Configure logging
+# Configure logging  filec
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler("address_book.log"),  # Store logs in a file
-        logging.StreamHandler()  # Display logs in console
+        logging.FileHandler("address_book.log"),  # Store logs in a file that is store all the error msg 
+        logging.StreamHandler()  # Display logs in console it only for console
     ]
 )
 
@@ -128,7 +128,29 @@ class AddressBook:
                 logging.warning(f"Contact '{name}' not found in the address book.")
         except Exception as e:
             logging.error(f"Error editing contact: {e}")
-#edit option code
+    
+
+    def delete_contact(self, name):
+        """
+        Description:
+        Deletes a contact from the address book.
+
+    Parameters:
+        name (str): Full name of the contact to be deleted.
+    
+    Return:
+        KeyError: If the contact does not exist."""
+        try:
+            if name in self.contacts:
+                del self.contacts[name]
+                logging.info(f"Contact '{name}' deleted successfully!")
+                print(f"Contact '{name}' has been deleted.")
+            else:
+                logging.warning(f"Contact '{name}' not found in the address book.")
+                print(f"Contact '{name}' not found.")
+        except Exception as e:
+            logging.error(f"Error deleting contact: {e}")
+
     def display_contacts(self):
         """
         Description:
@@ -234,7 +256,8 @@ def main():
             print("1. Add Contact")
             print("2. Display Contacts")
             print("3. Edit Contact")
-            print("4. Exit")
+            print("4. Delete Contact")  
+            print("5. Exit")
 
             choice = input("Enter your choice: ").strip()
 
@@ -249,7 +272,10 @@ def main():
                 updated_contact = AddressBookMain.create_contact()
                 if updated_contact:
                     address_book.edit_contact(name, updated_contact)
-            elif choice == "4":
+            elif choice == "4": 
+                name = input("Enter full name of the contact to delete: ").strip()
+                address_book.delete_contact(name)
+            elif choice == "5":
                 logging.info("Exiting Address Book. Goodbye!")
                 print("\nExiting Address Book. Goodbye!\n")
                 break
@@ -258,6 +284,7 @@ def main():
                 print("Invalid choice! Please select a valid option.")
         except Exception as e:
             logging.critical(f"Unexpected error: {e}")
+
 
 if __name__ == "__main__":
     main()
