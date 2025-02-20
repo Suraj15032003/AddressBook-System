@@ -44,3 +44,18 @@
 2025-02-20 12:00:35,269 - INFO - Contact 'Suraj thakur' deleted successfully!
 2025-02-20 12:00:39,370 - INFO - Address book is empty.
 2025-02-20 12:00:47,570 - INFO - Exiting Address Book. Goodbye!
+2025-02-20 16:42:11,694 - INFO - Address Book Application Started
+2025-02-20 16:42:11,695 - INFO - Address book initialized.
+2025-02-20 16:44:16,090 - INFO - Contact created: rishav garg
+2025-02-20 16:44:16,091 - INFO - Contact 'rishav garg' added successfully!
+2025-02-20 16:45:02,859 - INFO - Contact created: asdf asdf
+2025-02-20 16:45:02,859 - INFO - Contact 'asdf asdf' added successfully!
+2025-02-20 16:45:27,248 - INFO - Contact created: asdf asdfg
+2025-02-20 16:45:27,248 - INFO - Contact 'asdf asdfg' added successfully!
+2025-02-20 16:45:57,355 - INFO - Contact created: asdfgh asdfg
+2025-02-20 16:45:57,356 - INFO - Contact 'asdfgh asdfg' added successfully!
+2025-02-20 16:46:14,615 - INFO - Displayed contact: rishav garg
+2025-02-20 16:46:14,615 - INFO - Displayed contact: asdf asdf
+2025-02-20 16:46:14,616 - INFO - Displayed contact: asdf asdfg
+2025-02-20 16:46:14,617 - INFO - Displayed contact: asdfgh asdfg
+2025-02-20 16:47:39,349 - INFO - Exiting Address Book. Goodbye!
