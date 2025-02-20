@@ -87,3 +87,6 @@
 2025-02-20 23:11:36,587 - INFO - Displayed Address Book: school
 2025-02-20 23:12:11,223 - INFO - Displayed contact: shubham
 2025-02-20 23:13:59,207 - WARNING - Invalid menu choice entered.
+2025-02-20 23:14:58,404 - ERROR - Error adding contact: Phone number must be 10 or 12 digits long.
+2025-02-20 23:15:11,517 - INFO - Displayed Address Book: hostel
+2025-02-20 23:15:11,518 - INFO - Displayed Address Book: school
