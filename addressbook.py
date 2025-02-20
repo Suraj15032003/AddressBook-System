@@ -1,4 +1,15 @@
 import re
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("address_book.log"),  # Store logs in a file
+        logging.StreamHandler()  # Display logs in console
+    ]
+)
 
 class ContactPerson:
     """
@@ -25,7 +36,7 @@ class ContactPerson:
                 raise ValueError("First and last name cannot be empty.")
 
             if not isinstance(zip_code, int) or len(str(zip_code)) != 6:
-                raise ValueError("ZIP code must be a 5-digit number.")
+                raise ValueError("ZIP code must be a 6-digit number.")
 
             if not isinstance(phone, int) or len(str(phone)) not in (10, 12):
                 raise ValueError("Phone number must be 10 or 12 digits long.")
@@ -42,16 +53,17 @@ class ContactPerson:
             self.phone = phone
             self.email = email
 
+            logging.info(f"Contact created: {self.first_name} {self.last_name}")
+
         except ValueError as e:
-            print(f"Error creating contact: {e}")
+            logging.error(f"Error creating contact: {e}")
             raise
 
     def __str__(self):
         """
         Description:
             Returns a formatted string representation of the contact.
-        parameter :
-        none
+        
         Returns:
             str: Formatted contact details.
         """
@@ -65,9 +77,6 @@ class AddressBook:
     """
     Description:
         Manages multiple contact entries in an address book.
-    Parameter:
-        none
-    Return:
     """
 
     def __init__(self):
@@ -76,6 +85,7 @@ class AddressBook:
             Initializes an empty address book.
         """
         self.contacts = {}
+        logging.info("Address book initialized.")
 
     def add_contact(self, contact):
         """
@@ -94,13 +104,31 @@ class AddressBook:
 
             full_name = f"{contact.first_name} {contact.last_name}"
             if full_name in self.contacts:
-                print(f"Contact '{full_name}' already exists in the address book.")
+                logging.warning(f"Contact '{full_name}' already exists.")
             else:
                 self.contacts[full_name] = contact
-                print(f"\nContact '{full_name}' added successfully!\n")
+                logging.info(f"Contact '{full_name}' added successfully!")
         except Exception as e:
-            print(f"Error adding contact: {e}")
+            logging.error(f"Error adding contact: {e}")
 
+    def edit_contact(self, name, updated_contact):
+        """
+        Description:
+            Edits an existing contact in the address book.
+        
+        Parameters:
+            name (str): Full name of the contact to be edited.
+            updated_contact (ContactPerson): Updated contact object.
+        """
+        try:
+            if name in self.contacts:
+                self.contacts[name] = updated_contact
+                logging.info(f"Contact '{name}' updated successfully!")
+            else:
+                logging.warning(f"Contact '{name}' not found in the address book.")
+        except Exception as e:
+            logging.error(f"Error editing contact: {e}")
+#edit option code
     def display_contacts(self):
         """
         Description:
@@ -108,12 +136,14 @@ class AddressBook:
         """
         try:
             if not self.contacts:
+                logging.info("Address book is empty.")
                 print("\nAddress Book is empty!\n")
             else:
                 for contact in self.contacts.values():
                     print(contact)
+                    logging.info(f"Displayed contact: {contact.first_name} {contact.last_name}")
         except Exception as e:
-            print(f"Error displaying contacts: {e}")
+            logging.error(f"Error displaying contacts: {e}")
 
 
 class AddressBookMain:
@@ -142,8 +172,10 @@ class AddressBookMain:
                 if validation_func(user_input):
                     return user_input
                 else:
+                    logging.warning(error_message)
                     print(error_message)
             except Exception as e:
+                logging.error(f"Unexpected error: {e}")
                 print(f"Unexpected error: {e}")
 
     @staticmethod
@@ -153,7 +185,7 @@ class AddressBookMain:
             Collects user input and creates a new contact.
         
         Returns:
-            ContactPerson: A newly created contact object.
+            ContactPerson: A newly created contact object. 
         """
         try:
             first_name = input("Enter First Name: ").strip()
@@ -183,7 +215,7 @@ class AddressBookMain:
             return ContactPerson(first_name, last_name, address, city, state, int(zip_code), int(phone), email)
 
         except Exception as e:
-            print(f"Error creating contact: {e}")
+            logging.error(f"Error creating contact: {e}")
             return None
 
 
@@ -192,7 +224,7 @@ def main():
     Description:
         Entry point of the program. Manages address book operations.
     """
-    print("\nWelcome to the Address Book System!\n")
+    logging.info("Address Book Application Started")
     
     address_book = AddressBook()
     
@@ -201,7 +233,8 @@ def main():
             print("\nMenu:")
             print("1. Add Contact")
             print("2. Display Contacts")
-            print("3. Exit")
+            print("3. Edit Contact")
+            print("4. Exit")
 
             choice = input("Enter your choice: ").strip()
 
@@ -212,13 +245,19 @@ def main():
             elif choice == "2":
                 address_book.display_contacts()
             elif choice == "3":
+                name = input("Enter full name of the contact to edit: ").strip()
+                updated_contact = AddressBookMain.create_contact()
+                if updated_contact:
+                    address_book.edit_contact(name, updated_contact)
+            elif choice == "4":
+                logging.info("Exiting Address Book. Goodbye!")
                 print("\nExiting Address Book. Goodbye!\n")
                 break
             else:
+                logging.warning("Invalid choice! Please select a valid option.")
                 print("Invalid choice! Please select a valid option.")
         except Exception as e:
-            print(f"Unexpected error: {e}")
-
+            logging.critical(f"Unexpected error: {e}")
 
 if __name__ == "__main__":
     main()
