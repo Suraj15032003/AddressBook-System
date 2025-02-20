@@ -59,3 +59,11 @@
 2025-02-20 16:46:14,616 - INFO - Displayed contact: asdf asdfg
 2025-02-20 16:46:14,617 - INFO - Displayed contact: asdfgh asdfg
 2025-02-20 16:47:39,349 - INFO - Exiting Address Book. Goodbye!
+2025-02-20 16:47:43,170 - INFO - Address Book Application Started
+2025-02-20 16:47:43,170 - INFO - Address book initialized.
+2025-02-20 16:48:02,878 - INFO - Contact created: qwert dfgh
+2025-02-20 16:48:02,878 - INFO - Contact 'qwert dfgh' added successfully!
+2025-02-20 16:48:42,741 - INFO - Contact created: scsdfgbng sadfghnmhj
+2025-02-20 16:48:42,741 - INFO - Contact 'scsdfgbng sadfghnmhj' added successfully!
+2025-02-20 16:48:56,407 - INFO - Displayed contact: qwert dfgh
+2025-02-20 16:48:56,407 - INFO - Displayed contact: scsdfgbng sadfghnmhj
