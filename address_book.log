@@ -1,0 +1,35 @@
+2025-02-20 10:42:45,904 - INFO - Address Book Application Started
+2025-02-20 10:42:45,905 - INFO - Address book initialized.
+2025-02-20 10:44:22,252 - INFO - Contact created: abc zyx
+2025-02-20 10:44:22,253 - INFO - Contact 'abc zyx' added successfully!
+2025-02-20 10:44:28,080 - INFO - Displayed contact: abc zyx
+2025-02-20 10:46:04,189 - INFO - Contact created: aalu prantha
+2025-02-20 10:46:04,189 - INFO - Contact 'aalu prantha' added successfully!
+2025-02-20 10:46:06,842 - INFO - Displayed contact: abc zyx
+2025-02-20 10:46:06,843 - INFO - Displayed contact: aalu prantha
+2025-02-20 10:47:00,265 - INFO - Displayed contact: abc zyx
+2025-02-20 10:47:00,266 - INFO - Displayed contact: aalu prantha
+2025-02-20 10:48:12,737 - INFO - Contact created: aaallu prantha
+2025-02-20 10:48:12,738 - INFO - Contact 'aalu prantha' updated successfully!
+2025-02-20 10:48:24,203 - INFO - Displayed contact: abc zyx
+2025-02-20 10:48:24,204 - INFO - Displayed contact: aaallu prantha
+2025-02-20 10:49:33,270 - INFO - Contact created: abc xyz acb
+2025-02-20 10:49:33,271 - WARNING - Contact 'dsf' not found in the address book.
+2025-02-20 10:51:00,792 - INFO - Contact created: suraj thakur
+2025-02-20 10:51:00,792 - INFO - Contact 'suraj thakur' added successfully!
+2025-02-20 10:51:05,426 - INFO - Displayed contact: abc zyx
+2025-02-20 10:51:05,427 - INFO - Displayed contact: aaallu prantha
+2025-02-20 10:51:05,428 - INFO - Displayed contact: suraj thakur
+2025-02-20 11:18:48,606 - WARNING - Invalid choice! Please select a valid option.
+2025-02-20 11:18:58,352 - WARNING - Invalid ZIP Code! It must be a 6-digit number.
+2025-02-20 11:18:59,189 - WARNING - Invalid ZIP Code! It must be a 6-digit number.
+2025-02-20 11:19:09,721 - INFO - Contact created: sdfg zsdf
+2025-02-20 11:19:09,721 - WARNING - Contact 'asdfg' not found in the address book.
+2025-02-20 11:19:15,676 - INFO - Exiting Address Book. Goodbye!
+2025-02-20 11:20:08,753 - INFO - Address Book Application Started
+2025-02-20 11:20:08,754 - INFO - Address book initialized.
+2025-02-20 11:35:54,082 - INFO - Exiting Address Book. Goodbye!
+2025-02-20 11:35:56,631 - INFO - Address Book Application Started
+2025-02-20 11:35:56,631 - INFO - Address book initialized.
+2025-02-20 11:36:22,395 - INFO - Contact created: Suraj thakur
+2025-02-20 11:36:22,395 - INFO - Contact 'Suraj thakur' added successfully!
