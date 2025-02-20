@@ -11,206 +11,196 @@ logging.basicConfig(
     ]
 )
 
-class ContactPerson:
+class Contact:
     """
-    Description:
-        Represents a contact person with personal details.
+    Description: Represents a contact with personal details.
+    
+    Parameters:
+        name - The name of the contact.
+        phone - The phone number (10 or 12 digits long).
+        email - The email address.
+        address - The physical address.
     """
-    def __init__(self, first_name, last_name, address, city, state, zip_code, phone, email):
+    def __init__(self, name, phone, email, address):
         """
-        Initializes a contact person with the given details and validates inputs.
+        Description: Initializes a contact and validates inputs.
+        
+        Parameters:
+            name - Contact's name.
+            phone - Contact's phone number.
+            email - Contact's email address.
+            address - Contact's address.
         """
-        try:
-            if not first_name or not last_name:
-                raise ValueError("First and last name cannot be empty.")
-
-            if not isinstance(zip_code, int) or len(str(zip_code)) != 6:
-                raise ValueError("ZIP code must be a 6-digit number.")
-
-            if not isinstance(phone, int) or len(str(phone)) not in (10, 12):
-                raise ValueError("Phone number must be 10 or 12 digits long.")
-
-            if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-                raise ValueError("Invalid email format.")
-
-            self.first_name = first_name
-            self.last_name = last_name
-            self.address = address
-            self.city = city
-            self.state = state
-            self.zip_code = zip_code
-            self.phone = phone
-            self.email = email
-
-            logging.info(f"Contact created: {self.first_name} {self.last_name}")
-
-        except ValueError as e:
-            logging.error(f"Error creating contact: {e}")
-            raise
-
+        if not name:
+            raise ValueError("Name cannot be empty.")
+        if not re.match(r"^\d{10,12}$", phone):
+            raise ValueError("Phone number must be 10 or 12 digits long.")
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            raise ValueError("Invalid email format.")
+        
+        self.name = name
+        self.phone = phone
+        self.email = email
+        self.address = address
+        logging.info(f"Contact created: {self.name}")
+    
     def __str__(self):
         """
-        Returns a formatted string representation of the contact.
+        Description: Returns a formatted string representation of the contact.
+        
+        Return:
+             Formatted contact information.
         """
-        return (f"Name: {self.first_name} {self.last_name}\n"
-                f"Address: {self.address}, {self.city}, {self.state}, {self.zip_code}\n"
-                f"Phone: {self.phone}\n"
-                f"Email: {self.email}\n")
+        return f"{self.name} | {self.phone} | {self.email} | {self.address}"
 
 class AddressBook:
     """
-    Description:
-        Manages multiple contact entries in an address book.
-    """
-    def __init__(self):
-        """
-        Initializes an empty address book.
-        """
-        self.contacts = {}
-        logging.info("Address book initialized.")
-
-    def add_contact(self, contact):
-        """
-        Adds a new contact to the address book.
-        """
-        try:
-            if not isinstance(contact, ContactPerson):
-                raise TypeError("Invalid contact type. Must be a ContactPerson instance.")
-
-            full_name = f"{contact.first_name} {contact.last_name}"
-            if full_name in self.contacts:
-                logging.warning(f"Contact '{full_name}' already exists.")
-            else:
-                self.contacts[full_name] = contact
-                logging.info(f"Contact '{full_name}' added successfully!")
-        except Exception as e:
-            logging.error(f"Error adding contact: {e}")
-
-    def edit_contact(self, name, updated_contact):
-        """
-        Edits an existing contact in the address book.
-        """
-        try:
-            if name in self.contacts:
-                self.contacts[name] = updated_contact
-                logging.info(f"Contact '{name}' updated successfully!")
-            else:
-                logging.warning(f"Contact '{name}' not found in the address book.")
-        except Exception as e:
-            logging.error(f"Error editing contact: {e}")
+    Description: Manages contacts within an address book.
     
-    def delete_contact(self, name):
+    Parameters:
+        book_name - The name of the address book.
+    """
+    def __init__(self, book_name):
         """
-        Deletes a contact from the address book.
+        Description: Initializes an address book with a given name.
+        
+        Parameters:
+            book_name (str): The name of the address book.
+        """
+        self.book_name = book_name
+        self.contacts = []
+        logging.info(f"Address Book '{book_name}' created.")
+
+    def add_contact(self, name, phone, email, address):
+        """
+        Description: Adds a new contact after validation.
+        
+        Parameters:
+            name : Contact's name.
+            phone : Contact's phone number.
+            email : Contact's email address.
+            address : Contact's address.
         """
         try:
-            if name in self.contacts:
-                del self.contacts[name]
-                logging.info(f"Contact '{name}' deleted successfully!")
-                print(f"Contact '{name}' has been deleted.")
-            else:
-                logging.warning(f"Contact '{name}' not found in the address book.")
-                print(f"Contact '{name}' not found.")
-        except Exception as e:
-            logging.error(f"Error deleting contact: {e}")
+            contact = Contact(name, phone, email, address)
+            self.contacts.append(contact)
+            logging.info(f"Contact '{name}' added to {self.book_name}.")
+        except ValueError as e:
+            logging.error(f"Error adding contact: {e}")
+            print(f"Error: {e}")
 
     def display_contacts(self):
         """
-        Displays all contacts in the address book.
+        Description:
+          Displays all contacts in the address book.
         """
-        try:
-            if not self.contacts:
-                logging.info("Address book is empty.")
-                print("\nAddress Book is empty!\n")
-            else:
-                for contact in self.contacts.values():
-                    print(contact)
-                    logging.info(f"Displayed contact: {contact.first_name} {contact.last_name}")
-        except Exception as e:
-            logging.error(f"Error displaying contacts: {e}")
+        if not self.contacts:
+            print(f"{self.book_name} Address Book is empty.")
+            logging.info(f"{self.book_name} Address Book is empty.")
+            return
+        print(f"\nContacts in {self.book_name}:")
+        for contact in self.contacts:
+            print(contact)
+            logging.info(f"Displayed contact: {contact.name}")
 
-class AddressBookMain:
+class AddressBookSystem:
     """
-    Main application class for managing the address book.
+    Description: Manages multiple Address Books.
     """
-    @staticmethod
-    def create_contact():
+    def __init__(self):
         """
-        Prompts user for contact details and creates a new ContactPerson object.
+        Description: Initializes the Address Book System.
         """
-        try:
-            first_name = input("Enter First Name: ").strip()
-            last_name = input("Enter Last Name: ").strip()
-            address = input("Enter Address: ").strip()
-            city = input("Enter City: ").strip()
-            state = input("Enter State: ").strip()
+        self.address_books = {}
+        logging.info("Address Book System initialized.")
 
-            zip_code = input("Enter ZIP Code (6 digits): ").strip()
-            phone = input("Enter Phone Number (10 or 12 digits): ").strip()
-            email = input("Enter Email: ").strip()
-
-            return ContactPerson(first_name, last_name, address, city, state, int(zip_code), int(phone), email)
-        except Exception as e:
-            logging.error(f"Error creating contact: {e}")
-            return None
-
-    @staticmethod
-    def add_multiple_contacts(address_book):
+    def add_address_book(self, book_name):
         """
-        Allows the user to add multiple contacts one at a time.
+        Description: Creates a new address book if it does not exist.
+        
+        Parameters:
+            book_name (str): The name of the address book.
         """
-        while True:
-            contact = AddressBookMain.create_contact()
-            if contact:
-                address_book.add_contact(contact)
-            more = input("Do you want to add another contact? (y/n): ").strip().lower()
-            if more != 'y':
-                break
+        if book_name in self.address_books:
+            print(f"Address Book '{book_name}' already exists!")
+            logging.warning(f"Address Book '{book_name}' already exists!")
+        else:
+            self.address_books[book_name] = AddressBook(book_name)
+            print(f"Address Book '{book_name}' created.")
+            logging.info(f"Address Book '{book_name}' created.")
+
+    def get_address_book(self, book_name):
+        """
+        Description: Retrieves an existing address book by name.
+        
+        Parameters:
+            book_name (str): The name of the address book to retrieve.
+        
+        Return:
+            AddressBook or None: The address book if found, otherwise None.
+        """
+        return self.address_books.get(book_name, None)
+
+    def display_all_books(self):
+        """
+        Description: Displays all available address books.
+        """
+        if not self.address_books:
+            print("No Address Books available.")
+            logging.info("No Address Books available.")
+        else:
+            print("\nAvailable Address Books:")
+            for book_name in self.address_books:
+                print(f"- {book_name}")
+                logging.info(f"Displayed Address Book: {book_name}")
 
 def main():
     """
-    Main function to run the Address Book application.
+    Description: Main function to interact with the Address Book System.
     """
-    logging.info("Address Book Application Started")
-    address_book = AddressBook()
+    system = AddressBookSystem()
     
     while True:
-        try:
-            print("\nMenu:")
-            print("1. Add Contact")
-            print("2. Add Multiple Contacts")
-            print("3. Display Contacts")
-            print("4. Edit Contact")
-            print("5. Delete Contact")  
-            print("6. Exit")
+        print("\n1. Add Address Book")
+        print("2. Add Contact to Address Book")
+        print("3. Display Contacts")
+        print("4. Display All Address Books")
+        print("5. Exit")
 
-            choice = input("Enter your choice: ").strip()
+        choice = input("Enter your choice: ").strip()
 
-            if choice == "1":
-                contact = AddressBookMain.create_contact()
-                if contact:
-                    address_book.add_contact(contact)
-            elif choice == "2":
-                AddressBookMain.add_multiple_contacts(address_book)
-            elif choice == "3":
-                address_book.display_contacts()
-            elif choice == "4":
-                name = input("Enter full name of the contact to edit: ").strip()
-                updated_contact = AddressBookMain.create_contact()
-                if updated_contact:
-                    address_book.edit_contact(name, updated_contact)
-            elif choice == "5": 
-                name = input("Enter full name of the contact to delete: ").strip()
-                address_book.delete_contact(name)
-            elif choice == "6":
-                logging.info("Exiting Address Book. Goodbye!")
-                print("\nExiting Address Book. Goodbye!\n")
-                break
+        if choice == "1":
+            book_name = input("Enter Address Book name: ").strip()
+            system.add_address_book(book_name)
+        elif choice == "2":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                name = input("Enter Contact Name: ").strip()
+                phone = input("Enter Phone Number: ").strip()
+                email = input("Enter Email: ").strip()
+                address = input("Enter Address: ").strip()
+                address_book.add_contact(name, phone, email, address)
             else:
-                logging.warning("Invalid choice! Please select a valid option.")
-                print("Invalid choice! Please select a valid option.")
-        except Exception as e:
-            logging.critical(f"Unexpected error: {e}")
+                print(f"Address Book '{book_name}' does not exist!")
+                logging.warning(f"Attempted to add contact to non-existent Address Book '{book_name}'.")
+        elif choice == "3":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                address_book.display_contacts()
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+                logging.warning(f"Attempted to display contacts of non-existent Address Book '{book_name}'.")
+        elif choice == "4":
+            system.display_all_books()
+        elif choice == "5":
+            print("Exiting...")
+            logging.info("Address Book System exited.")
+            break
+        else:
+            print("Invalid choice! Please try again.")
+            logging.warning("Invalid menu choice entered.")
 
 if __name__ == "__main__":
     main()

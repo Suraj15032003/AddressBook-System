@@ -67,3 +67,23 @@
 2025-02-20 16:48:42,741 - INFO - Contact 'scsdfgbng sadfghnmhj' added successfully!
 2025-02-20 16:48:56,407 - INFO - Displayed contact: qwert dfgh
 2025-02-20 16:48:56,407 - INFO - Displayed contact: scsdfgbng sadfghnmhj
+2025-02-20 22:53:01,356 - INFO - Exiting Address Book. Goodbye!
+2025-02-20 22:55:43,703 - INFO - Address Book System Started
+2025-02-20 22:56:00,524 - INFO - Address Book 'hostel' initialized.
+2025-02-20 22:56:00,525 - INFO - Address Book 'hostel' created.
+2025-02-20 23:06:28,620 - WARNING - Invalid choice! Please select a valid option.
+2025-02-20 23:06:39,519 - INFO - Exiting Address Book System. Goodbye!
+2025-02-20 23:09:10,466 - INFO - Address Book System initialized.
+2025-02-20 23:09:25,548 - INFO - Address Book 'hostel' created.
+2025-02-20 23:09:25,549 - INFO - Address Book 'hostel' created.
+2025-02-20 23:10:09,446 - INFO - Contact created: honey
+2025-02-20 23:10:09,447 - INFO - Contact 'honey' added to hostel.
+2025-02-20 23:10:29,736 - INFO - Displayed contact: honey
+2025-02-20 23:10:44,767 - INFO - Address Book 'school' created.
+2025-02-20 23:10:44,768 - INFO - Address Book 'school' created.
+2025-02-20 23:11:32,067 - INFO - Contact created: shubham
+2025-02-20 23:11:32,068 - INFO - Contact 'shubham' added to school.
+2025-02-20 23:11:36,586 - INFO - Displayed Address Book: hostel
+2025-02-20 23:11:36,587 - INFO - Displayed Address Book: school
+2025-02-20 23:12:11,223 - INFO - Displayed contact: shubham
+2025-02-20 23:13:59,207 - WARNING - Invalid menu choice entered.
