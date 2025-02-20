@@ -34,3 +34,13 @@
 2025-02-20 11:36:22,395 - INFO - Contact created: Suraj thakur
 2025-02-20 11:36:22,395 - INFO - Contact 'Suraj thakur' added successfully!
 2025-02-20 11:43:45,948 - INFO - Displayed contact: Suraj thakur
+2025-02-20 11:59:22,879 - INFO - Exiting Address Book. Goodbye!
+2025-02-20 11:59:26,960 - INFO - Address Book Application Started
+2025-02-20 11:59:26,960 - INFO - Address book initialized.
+2025-02-20 11:59:50,497 - INFO - Contact created: Suraj thakur
+2025-02-20 11:59:50,498 - INFO - Contact 'Suraj thakur' added successfully!
+2025-02-20 12:00:01,527 - WARNING - Contact 'Suraj Thakur' not found in the address book.
+2025-02-20 12:00:11,997 - INFO - Displayed contact: Suraj thakur
+2025-02-20 12:00:35,269 - INFO - Contact 'Suraj thakur' deleted successfully!
+2025-02-20 12:00:39,370 - INFO - Address book is empty.
+2025-02-20 12:00:47,570 - INFO - Exiting Address Book. Goodbye!
