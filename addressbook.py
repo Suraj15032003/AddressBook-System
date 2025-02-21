@@ -1,4 +1,4 @@
-import re
+import re 
 import logging
 
 # Configure logging
@@ -44,6 +44,20 @@ class Contact:
         self.address = address
         logging.info(f"Contact created: {self.name}")
     
+    def __eq__(self, other):
+        """
+        Description: Checks if two contacts have the same name.
+        """
+        if isinstance(other, Contact):
+            return self.name.lower() == other.name.lower()
+        return False
+
+    def __hash__(self):
+        """
+        Description: Returns a hash based on the contact name.
+        """
+        return hash(self.name.lower())
+    
     def __str__(self):
         """
         Description: Returns a formatted string representation of the contact.
@@ -68,12 +82,12 @@ class AddressBook:
             book_name (str): The name of the address book.
         """
         self.book_name = book_name
-        self.contacts = []
+        self.contacts = set()
         logging.info(f"Address Book '{book_name}' created.")
 
     def add_contact(self, name, phone, email, address):
         """
-        Description: Adds a new contact after validation.
+        Description: Adds a new contact after validation and checks for duplicates.
         
         Parameters:
             name : Contact's name.
@@ -83,8 +97,12 @@ class AddressBook:
         """
         try:
             contact = Contact(name, phone, email, address)
-            self.contacts.append(contact)
-            logging.info(f"Contact '{name}' added to {self.book_name}.")
+            if contact in self.contacts:
+                logging.warning(f"Duplicate contact '{name}' not added.")
+                print(f"Error: Contact '{name}' already exists in {self.book_name}.")
+            else:
+                self.contacts.add(contact)
+                logging.info(f"Contact '{name}' added to {self.book_name}.")
         except ValueError as e:
             logging.error(f"Error adding contact: {e}")
             print(f"Error: {e}")
@@ -183,24 +201,16 @@ def main():
                 address_book.add_contact(name, phone, email, address)
             else:
                 print(f"Address Book '{book_name}' does not exist!")
-                logging.warning(f"Attempted to add contact to non-existent Address Book '{book_name}'.")
         elif choice == "3":
             book_name = input("Enter Address Book name: ").strip()
             address_book = system.get_address_book(book_name)
             if address_book:
                 address_book.display_contacts()
-            else:
-                print(f"Address Book '{book_name}' does not exist!")
-                logging.warning(f"Attempted to display contacts of non-existent Address Book '{book_name}'.")
         elif choice == "4":
             system.display_all_books()
         elif choice == "5":
             print("Exiting...")
-            logging.info("Address Book System exited.")
             break
-        else:
-            print("Invalid choice! Please try again.")
-            logging.warning("Invalid menu choice entered.")
 
 if __name__ == "__main__":
     main()
