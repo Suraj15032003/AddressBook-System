@@ -201,3 +201,21 @@
 2025-02-22 23:19:57,269 - INFO - Contact created: hussandeep sharama
 2025-02-22 23:19:57,270 - INFO - Contact 'honey sharma' updated successfully!
 2025-02-22 23:20:23,529 - INFO - Contact 'rishav garg' deleted successfully!
+2025-02-22 23:47:16,406 - INFO - Address Book System initialized.
+2025-02-22 23:47:39,141 - INFO - Address Book 'book1' created.
+2025-02-22 23:47:39,143 - INFO - Address Book 'book1' created.
+2025-02-22 23:48:48,407 - INFO - Contact created: allo prantha
+2025-02-22 23:48:48,408 - INFO - Contact 'allo prantha' added to book1.
+2025-02-22 23:57:15,771 - INFO - Contact created: honey sharma
+2025-02-22 23:57:15,772 - INFO - Contact 'honey sharma' added to book1.
+2025-02-22 23:58:07,896 - INFO - Contact created: zombi dead
+2025-02-22 23:58:07,897 - INFO - Contact 'zombi dead' added to book1.
+2025-02-22 23:58:24,876 - INFO - Displayed sorted contact: allo prantha
+2025-02-22 23:58:24,877 - INFO - Displayed sorted contact: honey sharma
+2025-02-22 23:58:24,878 - INFO - Displayed sorted contact: zombi dead
+2025-02-22 23:59:13,818 - INFO - Contact created: a a
+2025-02-22 23:59:13,818 - INFO - Contact 'a a' added to book1.
+2025-02-22 23:59:25,545 - INFO - Displayed sorted contact: a a
+2025-02-22 23:59:25,545 - INFO - Displayed sorted contact: allo prantha
+2025-02-22 23:59:25,546 - INFO - Displayed sorted contact: honey sharma
+2025-02-22 23:59:25,547 - INFO - Displayed sorted contact: zombi dead
