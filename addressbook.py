@@ -1,5 +1,6 @@
 import re  
 import logging
+from collections import Counter
 
 # Configure logging
 logging.basicConfig(
@@ -272,7 +273,7 @@ class AddressBookSystem:
     def search_person_city(self, city=None):
         """
         Description:
-            Searches for contacts based on city across multiple address books.
+            Searches for contacts based on city across multiple address books and displays count by city and state.
 
         Parameters:
             city (str, optional): City to search.
@@ -280,25 +281,42 @@ class AddressBookSystem:
         Returns:
             None
         """
-        if city:
-            results = [contact for book in self.address_books.values()
-                       for contact in book.contacts
-                       if contact.city.lower() == city.lower()]
-        else:
+        if not city:
             print("Please provide a city to search.")
             return
 
+        # Collect all contacts across address books
+        all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
+        if not all_contacts:
+            print("No contacts available in any address book.")
+            return
+
+        # Filter contacts by the specified city
+        results = [contact for contact in all_contacts if contact.city.lower() == city.lower()]
+        
         if results:
-            print("\nSearch Results:")
+            print(f"\nSearch Results for City '{city}':")
             for result in results:
                 print(result)
+            
+            # Count by city (will only show the searched city due to filter)
+            city_counts = Counter(contact.city.lower() for contact in results)
+            print("\nContact Count by City:")
+            for city_name, count in city_counts.items():
+                print(f"{city_name}: {count}")
+
+            # Count by state for the filtered results
+            state_counts = Counter(contact.state.lower() for contact in results)
+            print("\nContact Count by State:")
+            for state_name, count in state_counts.items():
+                print(f"{state_name}: {count}")
         else:
-            print("No contacts found in the given city.")
+            print(f"No contacts found in the city '{city}'.")
 
     def search_person_state(self, state=None):
         """
         Description:
-            Searches for contacts based on state across multiple address books.
+            Searches for contacts based on state across multiple address books and displays count by city and state.
 
         Parameters:
             state (str, optional): State to search.
@@ -306,20 +324,64 @@ class AddressBookSystem:
         Returns:
             None
         """
-        if state:
-            results = [contact for book in self.address_books.values()
-                       for contact in book.contacts
-                       if contact.state.lower() == state.lower()]
-        else:
+        if not state:
             print("Please provide a State to search.")
             return
 
+        # Collect all contacts across address books
+        all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
+        if not all_contacts:
+            print("No contacts available in any address book.")
+            return
+
+        # Filter contacts by the specified state
+        results = [contact for contact in all_contacts if contact.state.lower() == state.lower()]
+        
         if results:
-            print("\nSearch Results:")
+            print(f"\nSearch Results for State '{state}':")
             for result in results:
                 print(result)
+            
+            # Count by city for the filtered results
+            city_counts = Counter(contact.city.lower() for contact in results)
+            print("\nContact Count by City:")
+            for city_name, count in city_counts.items():
+                print(f"{city_name}: {count}")
+
+            # Count by state (will only show the searched state due to filter)
+            state_counts = Counter(contact.state.lower() for contact in results)
+            print("\nContact Count by State:")
+            for state_name, count in state_counts.items():
+                print(f"{state_name}: {count}")
         else:
-            print("No contacts found in the given State.")
+            print(f"No contacts found in the state '{state}'.")
+
+    def count_contacts_by_city_and_state(self):
+        """
+        Description:
+            Displays the total count of contacts grouped by city and state across all address books.
+
+        Returns:
+            None
+        """
+        # Collect all contacts across address books
+        all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
+        
+        if not all_contacts:
+            print("No contacts available in any address book.")
+            return
+
+        # Count by city
+        city_counts = Counter(contact.city.lower() for contact in all_contacts)
+        print("\nTotal Contact Count by City:")
+        for city_name, count in sorted(city_counts.items()):
+            print(f"{city_name}: {count}")
+
+        # Count by state
+        state_counts = Counter(contact.state.lower() for contact in all_contacts)
+        print("\nTotal Contact Count by State:")
+        for state_name, count in sorted(state_counts.items()):
+            print(f"{state_name}: {count}")
 
 def main():
     """
@@ -340,7 +402,8 @@ def main():
         print("6. Search Person by State")
         print("7. Edit Contact")
         print("8. Delete Contact")
-        print("9. Exit")
+        print("9. Count Contacts by City and State")
+        print("10. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -405,6 +468,8 @@ def main():
             else:
                 print(f"Address Book '{book_name}' does not exist!")
         elif choice == "9":
+            system.count_contacts_by_city_and_state()
+        elif choice == "10":
             print("Exiting...")
             break
         else:
