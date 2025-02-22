@@ -131,14 +131,14 @@ class AddressBook:
             Edits the details of an existing contact.
 
         Parameters:
-            first_name (str): First name of the contact to edit.
-            last_name (str): Last name of the contact to edit.
-            new_phone (str, optional): New phone number.
-            new_email (str, optional): New email address.
-            new_address (str, optional): New physical address.
-            new_city (str, optional): New city.
-            new_state (str, optional): New state.
-            new_zip_code (str, optional): New ZIP code.
+            first_name - First name of the contact to edit.
+            last_name = Last name of the contact to edit.
+            new_phone = New phone number.
+            new_email - New email address.
+            new_address - New physical address.
+            new_city - New city.
+            new_state - New state.
+            new_zip_code - New ZIP code.
         """
         for contact in self.contacts:
             if contact.first_name.lower() == first_name.lower() and contact.last_name.lower() == last_name.lower():
@@ -300,6 +300,7 @@ def main():
             break
         else:
             print("Invalid choice! Please try again.")
+
 
 if __name__ == "__main__":
     main()
