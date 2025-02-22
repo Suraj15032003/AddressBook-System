@@ -109,3 +109,33 @@
 2025-02-21 21:08:49,782 - INFO - Contact 'honey' added to hostel.
 2025-02-21 21:09:35,689 - INFO - Contact created: honey
 2025-02-21 21:09:35,689 - WARNING - Duplicate contact 'honey' not added.
+2025-02-22 00:09:03,556 - INFO - Address Book System initialized.
+2025-02-22 00:09:16,835 - INFO - Address Book 'friend' created.
+2025-02-22 00:09:16,836 - INFO - Address Book 'friend' created.
+2025-02-22 00:10:24,826 - INFO - Contact created: shubham
+2025-02-22 00:10:24,826 - INFO - Contact 'shubham' added to friend.
+2025-02-22 00:24:49,948 - INFO - Address Book System initialized.
+2025-02-22 00:31:31,891 - INFO - Address Book System initialized.
+2025-02-22 00:31:58,973 - INFO - Address Book System initialized.
+2025-02-22 00:32:17,015 - INFO - Address Book 'friend' created.
+2025-02-22 00:32:17,015 - INFO - Address Book 'friend' created.
+2025-02-22 00:33:13,005 - INFO - Contact created: honey
+2025-02-22 00:33:13,005 - INFO - Contact 'honey' added to friend.
+2025-02-22 00:36:01,379 - INFO - Address Book System initialized.
+2025-02-22 00:36:12,457 - INFO - Address Book 'friend' created.
+2025-02-22 00:36:12,458 - INFO - Address Book 'friend' created.
+2025-02-22 00:37:05,254 - INFO - Contact created: rishav
+2025-02-22 00:37:05,254 - INFO - Contact 'rishav' added to friend.
+2025-02-22 00:38:02,032 - INFO - Contact created: harsh
+2025-02-22 00:38:02,033 - INFO - Contact 'harsh' added to friend.
+2025-02-22 00:38:20,325 - INFO - Address Book 'hostel' created.
+2025-02-22 00:38:20,326 - INFO - Address Book 'hostel' created.
+2025-02-22 00:39:27,373 - INFO - Contact created: jatin
+2025-02-22 00:39:27,373 - INFO - Contact 'jatin' added to hostel.
+2025-02-22 00:40:45,064 - INFO - Displayed Address Book: friend
+2025-02-22 00:40:45,065 - INFO - Displayed Address Book: hostel
+2025-02-22 00:41:07,656 - INFO - Displayed contact: rishav
+2025-02-22 00:41:07,657 - INFO - Displayed contact: harsh
+2025-02-22 00:42:25,216 - INFO - Contact created: rishav
+2025-02-22 00:42:25,217 - WARNING - Duplicate contact 'rishav' not added.
+2025-02-22 00:52:14,763 - INFO - Address Book System initialized.

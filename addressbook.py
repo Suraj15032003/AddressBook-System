@@ -13,24 +13,21 @@ logging.basicConfig(
 
 class Contact:
     """
-    Description: Represents a contact with personal details.
-    
+    Description:
+        Represents a contact in an address book.
+
     Parameters:
-        name - The name of the contact.
-        phone - The phone number (10 or 12 digits long).
-        email - The email address.
-        address - The physical address.
+        name (str): Name of the contact.
+        phone (str): Phone number of the contact.
+        email (str): Email address of the contact.
+        address (str): Street address of the contact.
+        city (str): City where the contact resides.
+        state (str): State where the contact resides.
+
+    Raises:
+        ValueError: If name is empty, phone is invalid, or email format is incorrect.
     """
-    def __init__(self, name, phone, email, address):
-        """
-        Description: Initializes a contact and validates inputs.
-        
-        Parameters:
-            name - Contact's name.
-            phone - Contact's phone number.
-            email - Contact's email address.
-            address - Contact's address.
-        """
+    def __init__(self, name, phone, email, address, city, state):
         if not name:
             raise ValueError("Name cannot be empty.")
         if not re.match(r"^\d{10,12}$", phone):
@@ -42,11 +39,20 @@ class Contact:
         self.phone = phone
         self.email = email
         self.address = address
+        self.city = city
+        self.state = state
         logging.info(f"Contact created: {self.name}")
     
     def __eq__(self, other):
         """
-        Description: Checks if two contacts have the same name.
+        Description:
+            Checks equality between two contacts based on name (case insensitive).
+        
+        Parameters:
+            other (Contact): Another contact to compare.
+        
+        Returns:
+            bool: True if names match (case insensitive), False otherwise.
         """
         if isinstance(other, Contact):
             return self.name.lower() == other.name.lower()
@@ -54,49 +60,58 @@ class Contact:
 
     def __hash__(self):
         """
-        Description: Returns a hash based on the contact name.
+        Description:
+            Defines a unique hash for a contact based on its name.
+        
+        Returns:
+            int: Hash of the contact name.
         """
         return hash(self.name.lower())
     
     def __str__(self):
         """
-        Description: Returns a formatted string representation of the contact.
+        Description:
+            Returns a formatted string representation of the contact.
         
-        Return:
-             Formatted contact information.
+        Returns:
+            str: Formatted contact details.
         """
-        return f"{self.name} | {self.phone} | {self.email} | {self.address}"
+        return f"{self.name} | {self.phone} | {self.email} | {self.address}, {self.city}, {self.state}"
 
 class AddressBook:
     """
-    Description: Manages contacts within an address book.
+    Description:
+        Represents an address book that stores multiple contacts.
     
     Parameters:
-        book_name - The name of the address book.
+        book_name (str): Name of the address book.
+    
+    Attributes:
+        contacts (set): A set of Contact objects.
     """
     def __init__(self, book_name):
-        """
-        Description: Initializes an address book with a given name.
-        
-        Parameters:
-            book_name (str): The name of the address book.
-        """
         self.book_name = book_name
         self.contacts = set()
         logging.info(f"Address Book '{book_name}' created.")
 
-    def add_contact(self, name, phone, email, address):
+    def add_contact(self, name, phone, email, address, city, state):
         """
-        Description: Adds a new contact after validation and checks for duplicates.
+        Description:
+            Adds a new contact to the address book if it does not already exist.
         
         Parameters:
-            name : Contact's name.
-            phone : Contact's phone number.
-            email : Contact's email address.
-            address : Contact's address.
+            name (str): Contact name.
+            phone (str): Phone number.
+            email (str): Email address.
+            address (str): Street address.
+            city (str): City.
+            state (str): State.
+
+        Raises:
+            ValueError: If contact details are invalid.
         """
         try:
-            contact = Contact(name, phone, email, address)
+            contact = Contact(name, phone, email, address, city, state)
             if contact in self.contacts:
                 logging.warning(f"Duplicate contact '{name}' not added.")
                 print(f"Error: Contact '{name}' already exists in {self.book_name}.")
@@ -110,7 +125,7 @@ class AddressBook:
     def display_contacts(self):
         """
         Description:
-          Displays all contacts in the address book.
+            Displays all contacts in the address book.
         """
         if not self.contacts:
             print(f"{self.book_name} Address Book is empty.")
@@ -121,23 +136,72 @@ class AddressBook:
             print(contact)
             logging.info(f"Displayed contact: {contact.name}")
 
+    def edit_contact(self, name, updated_contact):
+        """
+        Description:
+            Edits an existing contact in the address book.
+        
+        Parameters:
+            name (str): Full name of the contact to be edited.
+            updated_contact (Contact): Updated contact object.
+        """
+        try:
+            for contact in self.contacts:
+                if contact.name.lower() == name.lower():
+                    self.contacts.remove(contact)
+                    self.contacts.add(updated_contact)
+                    logging.info(f"Contact '{name}' updated successfully!")
+                    print(f"Contact '{name}' updated successfully!")
+                    return
+            logging.warning(f"Contact '{name}' not found in the address book.")
+            print(f"Contact '{name}' not found in the address book.")
+        except Exception as e:
+            logging.error(f"Error editing contact: {e}")
+            print(f"Error editing contact: {e}")
+
+    def delete_contact(self, name):
+        """
+        Description:
+            Deletes a contact from the address book.
+
+        Parameters:
+            name (str): Full name of the contact to be deleted.
+        
+        Returns:
+            KeyError: If the contact does not exist.
+        """
+        try:
+            for contact in self.contacts:
+                if contact.name.lower() == name.lower():
+                    self.contacts.remove(contact)
+                    logging.info(f"Contact '{name}' deleted successfully!")
+                    print(f"Contact '{name}' has been deleted.")
+                    return
+            logging.warning(f"Contact '{name}' not found in the address book.")
+            print(f"Contact '{name}' not found.")
+        except Exception as e:
+            logging.error(f"Error deleting contact: {e}")
+            print(f"Error deleting contact: {e}")
+
 class AddressBookSystem:
     """
-    Description: Manages multiple Address Books.
+    Description:
+        Manages multiple address books.
+
+    Attributes:
+        address_books (dict): Dictionary to store multiple address books.
     """
     def __init__(self):
-        """
-        Description: Initializes the Address Book System.
-        """
         self.address_books = {}
         logging.info("Address Book System initialized.")
 
     def add_address_book(self, book_name):
         """
-        Description: Creates a new address book if it does not exist.
+        Description:
+            Creates a new address book if it does not already exist.
         
         Parameters:
-            book_name (str): The name of the address book.
+            book_name (str): Name of the address book.
         """
         if book_name in self.address_books:
             print(f"Address Book '{book_name}' already exists!")
@@ -149,19 +213,21 @@ class AddressBookSystem:
 
     def get_address_book(self, book_name):
         """
-        Description: Retrieves an existing address book by name.
+        Description:
+            Retrieves an address book by name.
         
         Parameters:
-            book_name (str): The name of the address book to retrieve.
+            book_name (str): Name of the address book.
         
-        Return:
-            AddressBook or None: The address book if found, otherwise None.
+        Returns:
+            AddressBook: The requested address book or None if not found.
         """
         return self.address_books.get(book_name, None)
 
     def display_all_books(self):
         """
-        Description: Displays all available address books.
+        Description:
+            Displays all available address books.
         """
         if not self.address_books:
             print("No Address Books available.")
@@ -171,10 +237,37 @@ class AddressBookSystem:
             for book_name in self.address_books:
                 print(f"- {book_name}")
                 logging.info(f"Displayed Address Book: {book_name}")
+    
+    def search_person_city(self, city=None):
+        """
+        Description:
+            Searches for contacts based only on city across multiple address books.
+
+        Parameters:
+            city (str, optional): City to search.
+
+        Returns:
+            list: List of matching Contact objects.
+        """
+        if city:
+            results = [contact for book in self.address_books.values()
+                       for contact in book.contacts
+                       if contact.city.lower() == city.lower()]
+        else:
+            print("Please provide a city to search.")
+            return
+
+        if results:
+            print("\nSearch Results:")
+            for result in results:
+                print(result)
+        else:
+            print("No contacts found in the given city.")
 
 def main():
     """
-    Description: Main function to interact with the Address Book System.
+    Description:
+        Main function that provides a menu-driven interface for the address book system.
     """
     system = AddressBookSystem()
     
@@ -183,7 +276,10 @@ def main():
         print("2. Add Contact to Address Book")
         print("3. Display Contacts")
         print("4. Display All Address Books")
-        print("5. Exit")
+        print("5. Search Person by City")
+        print("6. Edit Contact")
+        print("7. Delete Contact")
+        print("8. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -198,7 +294,9 @@ def main():
                 phone = input("Enter Phone Number: ").strip()
                 email = input("Enter Email: ").strip()
                 address = input("Enter Address: ").strip()
-                address_book.add_contact(name, phone, email, address)
+                city = input("Enter City: ").strip()
+                state = input("Enter State: ").strip()
+                address_book.add_contact(name, phone, email, address, city, state)
             else:
                 print(f"Address Book '{book_name}' does not exist!")
         elif choice == "3":
@@ -206,11 +304,42 @@ def main():
             address_book = system.get_address_book(book_name)
             if address_book:
                 address_book.display_contacts()
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
         elif choice == "4":
             system.display_all_books()
         elif choice == "5":
+            city = input("Enter City: ").strip()
+            system.search_person_city(city if city else None)
+        elif choice == "6":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                name = input("Enter the name of the contact to edit: ").strip()
+                new_name = input("Enter New Contact Name: ").strip()
+                phone = input("Enter New Phone Number: ").strip()
+                email = input("Enter New Email: ").strip()
+                address = input("Enter New Address: ").strip()
+                city = input("Enter New City: ").strip()
+                state = input("Enter New State: ").strip()
+                updated_contact = Contact(new_name, phone, email, address, city, state)
+                address_book.edit_contact(name, updated_contact)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "7":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                name = input("Enter the name of the contact to delete: ").strip()
+                address_book.delete_contact(name)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "8":
             print("Exiting...")
             break
+        else:
+            print("Invalid choice. Please try again.")
+
 
 if __name__ == "__main__":
     main()
