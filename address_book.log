@@ -139,3 +139,28 @@
 2025-02-22 00:42:25,216 - INFO - Contact created: rishav
 2025-02-22 00:42:25,217 - WARNING - Duplicate contact 'rishav' not added.
 2025-02-22 00:52:14,763 - INFO - Address Book System initialized.
+2025-02-22 10:06:11,681 - INFO - Address Book System initialized.
+2025-02-22 10:08:22,425 - INFO - Address Book 'Personal' created.
+2025-02-22 10:08:22,427 - INFO - Address Book 'Personal' created.
+2025-02-22 10:09:13,233 - INFO - Address Book 'Work' created.
+2025-02-22 10:09:13,234 - INFO - Address Book 'Work' created.
+2025-02-22 10:11:51,997 - INFO - Contact created: Alice Smith
+2025-02-22 10:11:51,997 - INFO - Contact 'Alice Smith' added to Personal.
+2025-02-22 10:12:52,437 - INFO - Contact created: Bob Johnson
+2025-02-22 10:12:52,438 - INFO - Contact 'Bob Johnson' added to Personal.
+2025-02-22 10:14:03,535 - INFO - Contact created: Charlie Lee
+2025-02-22 10:14:03,535 - INFO - Contact 'Charlie Lee' added to Personal.
+2025-02-22 10:18:08,573 - INFO - Contact created: Dave White
+2025-02-22 10:18:08,573 - INFO - Contact 'Dave White' added to Work.
+2025-02-22 10:18:54,748 - INFO - Contact created: Eva Brown
+2025-02-22 10:18:54,748 - INFO - Contact 'Eva Brown' added to Work.
+2025-02-22 10:19:58,433 - INFO - Displayed contact: Alice Smith
+2025-02-22 10:19:58,434 - INFO - Displayed contact: Charlie Lee
+2025-02-22 10:19:58,434 - INFO - Displayed contact: Bob Johnson
+2025-02-22 10:20:12,577 - INFO - Displayed Address Book: Personal
+2025-02-22 10:20:12,578 - INFO - Displayed Address Book: Work
+2025-02-22 10:21:38,109 - INFO - Contact created: Alice Smith
+2025-02-22 10:21:38,110 - WARNING - Duplicate contact 'Alice Smith' not added.
+2025-02-22 10:23:21,813 - INFO - Displayed contact: Alice Smith
+2025-02-22 10:23:21,813 - INFO - Displayed contact: Charlie Lee
+2025-02-22 10:23:21,814 - INFO - Displayed contact: Bob Johnson
