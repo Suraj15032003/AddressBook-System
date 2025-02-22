@@ -95,3 +95,19 @@
 2025-02-20 23:24:59,348 - WARNING - Attempted to display contacts of non-existent Address Book 'hostel'.
 2025-02-20 23:25:10,745 - INFO - No Address Books available.
 2025-02-20 23:26:07,450 - INFO - Address Book System exited.
+2025-02-22 11:55:45,984 - INFO - Address Book System initialized.
+2025-02-22 11:56:35,492 - INFO - Address Book 'book' created.
+2025-02-22 11:56:35,493 - INFO - Address Book 'book' created.
+2025-02-22 11:57:30,639 - INFO - Contact created: harsh garg
+2025-02-22 11:57:30,640 - INFO - Contact 'harsh garg' added to book.
+2025-02-22 11:58:33,473 - INFO - Contact created: harsh garg
+2025-02-22 11:58:33,473 - INFO - Contact 'harsh garg' added to book.
+2025-02-22 11:58:54,121 - INFO - Displayed contact: harsh garg
+2025-02-22 11:58:54,121 - INFO - Displayed contact: harsh garg
+2025-02-22 12:03:56,092 - INFO - Address Book System initialized.
+2025-02-22 12:05:47,758 - INFO - Address Book System initialized.
+2025-02-22 12:05:54,166 - INFO - Address Book 'book' created.
+2025-02-22 12:05:54,167 - INFO - Address Book 'book' created.
+2025-02-22 12:06:51,902 - INFO - Contact created: harsh garg
+2025-02-22 12:06:51,903 - INFO - Contact 'harsh garg' added to book.
+2025-02-22 12:07:36,494 - WARNING - Contact 'harsh garg' already exists in book.
