@@ -90,3 +90,18 @@
 2025-02-20 23:14:58,404 - ERROR - Error adding contact: Phone number must be 10 or 12 digits long.
 2025-02-20 23:15:11,517 - INFO - Displayed Address Book: hostel
 2025-02-20 23:15:11,518 - INFO - Displayed Address Book: school
+2025-02-22 11:05:46,467 - INFO - Address Book System initialized.
+2025-02-22 11:06:03,533 - INFO - Address Book 'hostel' created.
+2025-02-22 11:06:03,534 - INFO - Address Book 'hostel' created.
+2025-02-22 11:06:25,621 - INFO - Contact created: suraj
+2025-02-22 11:06:25,622 - INFO - Contact 'suraj' added to hostel.
+2025-02-22 11:07:18,328 - INFO - Contact 'suraj' updated in hostel.
+2025-02-22 11:07:32,000 - INFO - Contact 'suraj' deleted from hostel.
+2025-02-22 11:14:35,354 - INFO - Address Book System initialized.
+2025-02-22 11:14:54,884 - INFO - Address Book 'new' created.
+2025-02-22 11:14:54,885 - INFO - Address Book 'new' created.
+2025-02-22 11:15:33,465 - ERROR - Error adding contact: ZIP code must be 5 digits.
+2025-02-22 11:17:15,607 - INFO - Address Book System initialized.
+2025-02-22 11:17:28,387 - INFO - Address Book 'new' created.
+2025-02-22 11:17:28,388 - INFO - Address Book 'new' created.
+2025-02-22 11:18:19,443 - ERROR - Error adding contact: ZIP code must be 5 digits.
