@@ -164,3 +164,22 @@
 2025-02-22 10:23:21,813 - INFO - Displayed contact: Alice Smith
 2025-02-22 10:23:21,813 - INFO - Displayed contact: Charlie Lee
 2025-02-22 10:23:21,814 - INFO - Displayed contact: Bob Johnson
+2025-02-22 12:46:06,443 - INFO - Address Book System initialized.
+2025-02-22 12:46:13,836 - INFO - Address Book 'book' created.
+2025-02-22 12:46:13,836 - INFO - Address Book 'book' created.
+2025-02-22 12:46:58,618 - INFO - Contact created: Suraj
+2025-02-22 12:46:58,618 - INFO - Contact 'Suraj' added to book.
+2025-02-22 15:27:03,815 - INFO - Address Book System initialized.
+2025-02-22 15:30:32,270 - INFO - Address Book 'hostel' created.
+2025-02-22 15:30:32,271 - INFO - Address Book 'hostel' created.
+2025-02-22 15:31:14,227 - INFO - Contact created: suraj thakur
+2025-02-22 15:31:14,228 - INFO - Contact 'suraj thakur' added to hostel.
+2025-02-22 15:31:22,649 - INFO - Displayed contact: suraj thakur
+2025-02-22 15:31:39,318 - INFO - Address Book 'friends' created.
+2025-02-22 15:31:39,318 - INFO - Address Book 'friends' created.
+2025-02-22 15:31:52,733 - INFO - Displayed contact: suraj thakur
+2025-02-22 15:31:58,724 - INFO - Displayed Address Book: hostel
+2025-02-22 15:31:58,725 - INFO - Displayed Address Book: friends
+2025-02-22 15:33:32,425 - INFO - Contact created: surya rajput
+2025-02-22 15:33:32,425 - INFO - Contact 'suraj thakur' updated successfully!
+2025-02-22 15:33:54,043 - INFO - Contact 'surya rajput' deleted successfully!
