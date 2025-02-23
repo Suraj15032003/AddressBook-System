@@ -175,6 +175,26 @@ class AddressBook:
             print(contact)
             logging.info(f"Displayed sorted contact: {contact.first_name} {contact.last_name}")
 
+    def display_contacts_sorted_by_zip(self):
+        """
+        Description:
+            Displays all contacts in the address book sorted by ZIP code.
+
+        Returns:
+            None
+        """
+        if not self.contacts:
+            print(f"{self.book_name} Address Book is empty.")
+            logging.info(f"{self.book_name} Address Book is empty.")
+            return
+        
+        # Sort contacts by ZIP code
+        sorted_contacts = sorted(self.contacts, key=lambda contact: contact.zip_code)
+        print(f"\nContacts in {self.book_name} (Sorted by ZIP):")
+        for contact in sorted_contacts:
+            print(contact)
+            logging.info(f"Displayed sorted contact: {contact.first_name} {contact.last_name}")
+
     def edit_contact(self, first_name, last_name, updated_contact):
         """
         Description:
@@ -424,7 +444,8 @@ def main():
         print("8. Delete Contact")
         print("9. Count Contacts by City and State")
         print("10. Display Contacts Sorted by Name")
-        print("11. Exit")
+        print("11. Display Contacts Sorted by ZIP")
+        print("12. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -498,6 +519,13 @@ def main():
             else:
                 print(f"Address Book '{book_name}' does not exist!")
         elif choice == "11":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                address_book.display_contacts_sorted_by_zip()
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "12":
             print("Exiting...")
             break
         else:

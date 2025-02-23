@@ -219,3 +219,18 @@
 2025-02-22 23:59:25,545 - INFO - Displayed sorted contact: allo prantha
 2025-02-22 23:59:25,546 - INFO - Displayed sorted contact: honey sharma
 2025-02-22 23:59:25,547 - INFO - Displayed sorted contact: zombi dead
+2025-02-23 23:54:59,965 - INFO - Address Book System initialized.
+2025-02-23 23:55:16,047 - INFO - Address Book 'book1' created.
+2025-02-23 23:55:16,048 - INFO - Address Book 'book1' created.
+2025-02-23 23:56:33,287 - INFO - Contact created: Alice Brown
+2025-02-23 23:56:33,288 - INFO - Contact 'Alice Brown' added to book1.
+2025-02-23 23:58:02,058 - INFO - Contact created: Jane1 Smith
+2025-02-23 23:58:02,058 - INFO - Contact 'Jane1 Smith' added to book1.
+2025-02-23 23:59:10,383 - INFO - Contact created: Carl Adams
+2025-02-23 23:59:10,383 - INFO - Contact 'Carl Adams' added to book1.
+2025-02-24 00:00:14,823 - INFO - Contact created: Bob johan
+2025-02-24 00:00:14,823 - INFO - Contact 'Bob johan' added to book1.
+2025-02-24 00:00:32,715 - INFO - Displayed sorted contact: Alice Brown
+2025-02-24 00:00:32,716 - INFO - Displayed sorted contact: Jane1 Smith
+2025-02-24 00:00:32,717 - INFO - Displayed sorted contact: Carl Adams
+2025-02-24 00:00:32,718 - INFO - Displayed sorted contact: Bob johan
