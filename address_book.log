@@ -234,3 +234,43 @@
 2025-02-24 00:00:32,716 - INFO - Displayed sorted contact: Jane1 Smith
 2025-02-24 00:00:32,717 - INFO - Displayed sorted contact: Carl Adams
 2025-02-24 00:00:32,718 - INFO - Displayed sorted contact: Bob johan
+2025-02-24 10:12:05,068 - INFO - Address Book System initialized.
+2025-02-24 10:12:26,556 - INFO - Address Book 'book1' created.
+2025-02-24 10:12:26,556 - INFO - Address Book 'book1' created.
+2025-02-24 10:13:07,077 - INFO - Contact created: suraj thakur
+2025-02-24 10:13:07,077 - INFO - Contact 'suraj thakur' added to book1.
+2025-02-24 10:13:30,994 - INFO - No file book.txt found, starting with empty address book.
+2025-02-24 10:14:13,889 - INFO - Saved book1 to book1.txt
+2025-02-24 10:14:35,459 - INFO - Contact created: suraj thakur
+2025-02-24 10:14:35,459 - WARNING - Duplicate contact 'suraj thakur' not added.
+2025-02-24 10:14:35,460 - INFO - Loaded book1 from book1.txt
+2025-02-24 10:21:21,371 - INFO - No file book1 found, starting with empty address book.
+2025-02-24 10:21:42,323 - INFO - Contact created: suraj thakur
+2025-02-24 10:21:42,324 - WARNING - Duplicate contact 'suraj thakur' not added.
+2025-02-24 10:21:42,324 - INFO - Contact created: honey sharma
+2025-02-24 10:21:42,326 - INFO - Contact 'honey sharma' added to book1.
+2025-02-24 10:21:42,326 - INFO - Loaded book1 from book1.txt
+2025-02-24 10:34:58,224 - INFO - Contact created: Alice Smith
+2025-02-24 10:34:58,224 - INFO - Contact 'Alice Smith' added to book1.
+2025-02-24 10:34:58,225 - INFO - Contact created: Bob Johnson
+2025-02-24 10:34:58,225 - INFO - Contact 'Bob Johnson' added to book1.
+2025-02-24 10:34:58,225 - INFO - Contact created: Carol Williams
+2025-02-24 10:34:58,225 - INFO - Contact 'Carol Williams' added to book1.
+2025-02-24 10:34:58,226 - INFO - Contact created: David Brown
+2025-02-24 10:34:58,226 - INFO - Contact 'David Brown' added to book1.
+2025-02-24 10:34:58,227 - INFO - Contact created: Eve Adams
+2025-02-24 10:34:58,227 - INFO - Contact 'Eve Adams' added to book1.
+2025-02-24 10:34:58,227 - INFO - Loaded book1 from book1.txt
+2025-02-24 10:43:46,532 - INFO - Contact 'Eve Adams' deleted successfully!
+2025-02-24 10:45:04,043 - INFO - Displayed sorted contact: Alice Smith
+2025-02-24 10:45:04,044 - INFO - Displayed sorted contact: Bob Johnson
+2025-02-24 10:45:04,045 - INFO - Displayed sorted contact: Carol Williams
+2025-02-24 10:45:04,046 - INFO - Displayed sorted contact: David Brown
+2025-02-24 10:45:04,046 - INFO - Displayed sorted contact: honey sharma
+2025-02-24 10:45:04,046 - INFO - Displayed sorted contact: suraj thakur
+2025-02-24 10:45:16,609 - INFO - Displayed sorted contact: Alice Smith
+2025-02-24 10:45:16,610 - INFO - Displayed sorted contact: David Brown
+2025-02-24 10:45:16,610 - INFO - Displayed sorted contact: suraj thakur
+2025-02-24 10:45:16,611 - INFO - Displayed sorted contact: honey sharma
+2025-02-24 10:45:16,611 - INFO - Displayed sorted contact: Carol Williams
+2025-02-24 10:45:16,612 - INFO - Displayed sorted contact: Bob Johnson

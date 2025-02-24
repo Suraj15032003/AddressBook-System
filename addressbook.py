@@ -249,6 +249,59 @@ class AddressBook:
             logging.error(f"Error deleting contact: {e}")
             print(f"Error deleting contact: {e}")
 
+    def save_to_file(self, filename):
+        """
+        Description:
+            Saves all contacts in the address book to a specified file.
+
+        Parameters:
+            filename (str): The name of the file to save the contacts to.
+
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'w') as file:
+                for contact in self.contacts:
+                    # Format: first_name,last_name,phone,email,address,city,state,zip_code
+                    line = f"{contact.first_name},{contact.last_name},{contact.phone},{contact.email},{contact.address},{contact.city},{contact.state},{contact.zip_code}\n"
+                    file.write(line)
+            logging.info(f"Saved {self.book_name} to {filename}")
+            print(f"Address Book '{self.book_name}' saved to {filename}.")
+        except Exception as e:
+            logging.error(f"Error saving to file {filename}: {e}")
+            print(f"Error saving to file: {e}")
+
+    def load_from_file(self, filename):
+        """
+        Description:
+            Loads contacts from a specified file into the address book.
+
+        Parameters:
+            filename (str): The name of the file to load contacts from.
+
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'r') as file:
+                for line in file:
+                    # Expect format: first_name,last_name,phone,email,address,city,state,zip_code
+                    fields = line.strip().split(',')
+                    if len(fields) == 8:
+                        first_name, last_name, phone, email, address, city, state, zip_code = fields
+                        self.add_contact(first_name, last_name, phone, email, address, city, state, zip_code)
+                    else:
+                        logging.warning(f"Skipping malformed line in {filename}: {line.strip()}")
+            logging.info(f"Loaded {self.book_name} from {filename}")
+            print(f"Address Book '{self.book_name}' loaded from {filename}.")
+        except FileNotFoundError:
+            logging.info(f"No file {filename} found, starting with empty address book.")
+            print(f"No file {filename} found, starting with empty address book.")
+        except Exception as e:
+            logging.error(f"Error loading from file {filename}: {e}")
+            print(f"Error loading from file: {e}")
+
 class AddressBookSystem:
     """
     Description:
@@ -445,7 +498,9 @@ def main():
         print("9. Count Contacts by City and State")
         print("10. Display Contacts Sorted by Name")
         print("11. Display Contacts Sorted by ZIP")
-        print("12. Exit")
+        print("12. Save Address Book to File")
+        print("13. Load Address Book from File")
+        print("14. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -525,7 +580,8 @@ def main():
                 address_book.display_contacts_sorted_by_zip()
             else:
                 print(f"Address Book '{book_name}' does not exist!")
-        elif choice == "12":
+       
+        elif choice == "14":
             print("Exiting...")
             break
         else:
