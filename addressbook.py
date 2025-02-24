@@ -1,6 +1,7 @@
 import re  
 import logging
 from collections import Counter
+import csv  # Added for CSV functionality
 
 # Configure logging
 logging.basicConfig(
@@ -252,55 +253,58 @@ class AddressBook:
     def save_to_file(self, filename):
         """
         Description:
-            Saves all contacts in the address book to a specified file.
+            Saves all contacts in the address book to a CSV file using the csv module.
 
         Parameters:
-            filename (str): The name of the file to save the contacts to.
+            filename (str): The name of the CSV file to save the contacts to.
 
         Returns:
             None
         """
         try:
-            with open(filename, 'w') as file:
+            with open(filename, 'w', newline='') as file:
+                writer = csv.writer(file)
+                # Write header row
+                writer.writerow(['first_name', 'last_name', 'phone', 'email', 'address', 'city', 'state', 'zip_code'])
+                # Write contact data
                 for contact in self.contacts:
-                    # Format: first_name,last_name,phone,email,address,city,state,zip_code
-                    line = f"{contact.first_name},{contact.last_name},{contact.phone},{contact.email},{contact.address},{contact.city},{contact.state},{contact.zip_code}\n"
-                    file.write(line)
-            logging.info(f"Saved {self.book_name} to {filename}")
-            print(f"Address Book '{self.book_name}' saved to {filename}.")
+                    writer.writerow([contact.first_name, contact.last_name, contact.phone, contact.email,
+                                   contact.address, contact.city, contact.state, contact.zip_code])
+            logging.info(f"Saved {self.book_name} to CSV file {filename}")
+            print(f"Address Book '{self.book_name}' saved to CSV file {filename}.")
         except Exception as e:
-            logging.error(f"Error saving to file {filename}: {e}")
-            print(f"Error saving to file: {e}")
+            logging.error(f"Error saving to CSV file {filename}: {e}")
+            print(f"Error saving to CSV file: {e}")
 
     def load_from_file(self, filename):
         """
         Description:
-            Loads contacts from a specified file into the address book.
+            Loads contacts from a CSV file into the address book using the csv module.
 
         Parameters:
-            filename (str): The name of the file to load contacts from.
+            filename (str): The name of the CSV file to load contacts from.
 
         Returns:
             None
         """
         try:
-            with open(filename, 'r') as file:
-                for line in file:
-                    # Expect format: first_name,last_name,phone,email,address,city,state,zip_code
-                    fields = line.strip().split(',')
-                    if len(fields) == 8:
-                        first_name, last_name, phone, email, address, city, state, zip_code = fields
-                        self.add_contact(first_name, last_name, phone, email, address, city, state, zip_code)
-                    else:
-                        logging.warning(f"Skipping malformed line in {filename}: {line.strip()}")
-            logging.info(f"Loaded {self.book_name} from {filename}")
-            print(f"Address Book '{self.book_name}' loaded from {filename}.")
+            with open(filename, 'r', newline='') as file:
+                reader = csv.DictReader(file)
+                # Ensure header matches expected fields
+                expected_fields = {'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'state', 'zip_code'}
+                if not expected_fields.issubset(reader.fieldnames):
+                    raise ValueError("CSV file does not contain all required fields.")
+                for row in reader:
+                    self.add_contact(row['first_name'], row['last_name'], row['phone'], row['email'],
+                                   row['address'], row['city'], row['state'], row['zip_code'])
+            logging.info(f"Loaded {self.book_name} from CSV file {filename}")
+            print(f"Address Book '{self.book_name}' loaded from CSV file {filename}.")
         except FileNotFoundError:
-            logging.info(f"No file {filename} found, starting with empty address book.")
-            print(f"No file {filename} found, starting with empty address book.")
+            logging.info(f"No CSV file {filename} found, starting with empty address book.")
+            print(f"No CSV file {filename} found, starting with empty address book.")
         except Exception as e:
-            logging.error(f"Error loading from file {filename}: {e}")
-            print(f"Error loading from file: {e}")
+            logging.error(f"Error loading from CSV file {filename}: {e}")
+            print(f"Error loading from CSV file: {e}")
 
 class AddressBookSystem:
     """
@@ -498,8 +502,8 @@ def main():
         print("9. Count Contacts by City and State")
         print("10. Display Contacts Sorted by Name")
         print("11. Display Contacts Sorted by ZIP")
-        print("12. Save Address Book to File")
-        print("13. Load Address Book from File")
+        print("12. Save Address Book to CSV File")
+        print("13. Load Address Book from CSV File")
         print("14. Exit")
 
         choice = input("Enter your choice: ").strip()
@@ -580,7 +584,22 @@ def main():
                 address_book.display_contacts_sorted_by_zip()
             else:
                 print(f"Address Book '{book_name}' does not exist!")
-       
+        elif choice == "12":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter CSV filename to save to (e.g., 'book.csv'): ").strip()
+                address_book.save_to_file(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "13":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter CSV filename to load from (e.g., 'book.csv'): ").strip()
+                address_book.load_from_file(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
         elif choice == "14":
             print("Exiting...")
             break

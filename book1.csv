@@ -1,0 +1,15 @@
+first_name,last_name,phone,email,address,city,state,zip_code
+suraj,thakur,1234567890,suraj@gmail.com,chitkara,rajpura,pujab,123456
+Alice,Smith,1234567890,alice.smith@email.com,123 Main St,New York,NY,100001
+Bob,Johnson,9876543210,bob.johnson@email.com,456 Elm St,Los Angeles,CA,900001
+Carol,Williams,5556667777,carol.w@email.com,789 Oak St,Chicago,IL,606001
+David,Brown,4445556666,david.brown@email.com,321 Pine St,New York,NY,100002
+Eve,Adams,3334445555,eve.adams@email.com,654 Birch St,Los Angeles,CA,900002
+
+first_name,last_name,phone,email,address,city,state,zip_code
+James,Wilson,2345678901,james.wilson@email.com,101 Pine Ave,Miami,FL,331001
+Sophie,Martin,8765432109,sophie.martin@email.com,202 Cedar Ln,Denver,CO,802001
+Liam,Patel,6789012345,liam.patel@email.com,303 Oak Dr,Atlanta,GA,303001
+Olivia,Nguyen,3456789012,olivia.nguyen@email.com,404 Birch Rd,Portland,OR,972001
+Ethan,Garcia,5678901234,ethan.garcia@email.com,505 Maple St,Miami,FL,331002
+Isabella,Rossi,7890123456,isabella.rossi@email.com,606 Elm Ct,Denver,CO,802002

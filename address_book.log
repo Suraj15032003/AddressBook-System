@@ -274,3 +274,51 @@
 2025-02-24 10:45:16,611 - INFO - Displayed sorted contact: honey sharma
 2025-02-24 10:45:16,611 - INFO - Displayed sorted contact: Carol Williams
 2025-02-24 10:45:16,612 - INFO - Displayed sorted contact: Bob Johnson
+2025-02-24 11:21:55,704 - INFO - Address Book System initialized.
+2025-02-24 11:22:06,560 - INFO - Address Book 'book1' created.
+2025-02-24 11:22:06,561 - INFO - Address Book 'book1' created.
+2025-02-24 11:22:51,963 - INFO - Contact created: suraj thakur
+2025-02-24 11:22:51,963 - INFO - Contact 'suraj thakur' added to book1.
+2025-02-24 11:23:23,469 - INFO - Saved book1 to CSV file book1.csv
+2025-02-24 11:24:35,386 - INFO - Contact created: suraj thakur
+2025-02-24 11:24:35,387 - WARNING - Duplicate contact 'suraj thakur' not added.
+2025-02-24 11:24:35,387 - INFO - Loaded book1 from CSV file book1.csv
+2025-02-24 11:25:20,617 - INFO - Contact created: suraj thakur
+2025-02-24 11:25:20,618 - WARNING - Duplicate contact 'suraj thakur' not added.
+2025-02-24 11:25:20,618 - INFO - Contact created: Alice Smith
+2025-02-24 11:25:20,619 - INFO - Contact 'Alice Smith' added to book1.
+2025-02-24 11:25:20,619 - INFO - Contact created: Bob Johnson
+2025-02-24 11:25:20,619 - INFO - Contact 'Bob Johnson' added to book1.
+2025-02-24 11:25:20,620 - INFO - Contact created: Carol Williams
+2025-02-24 11:25:20,620 - INFO - Contact 'Carol Williams' added to book1.
+2025-02-24 11:25:20,620 - INFO - Contact created: David Brown
+2025-02-24 11:25:20,621 - INFO - Contact 'David Brown' added to book1.
+2025-02-24 11:25:20,621 - INFO - Contact created: Eve Adams
+2025-02-24 11:25:20,621 - INFO - Contact 'Eve Adams' added to book1.
+2025-02-24 11:25:20,621 - INFO - Loaded book1 from CSV file book1.csv
+2025-02-24 11:39:24,365 - INFO - Contact created: suraj thakur
+2025-02-24 11:39:24,366 - WARNING - Duplicate contact 'suraj thakur' not added.
+2025-02-24 11:39:24,366 - INFO - Contact created: Alice Smith
+2025-02-24 11:39:24,366 - WARNING - Duplicate contact 'Alice Smith' not added.
+2025-02-24 11:39:24,367 - INFO - Contact created: Bob Johnson
+2025-02-24 11:39:24,367 - WARNING - Duplicate contact 'Bob Johnson' not added.
+2025-02-24 11:39:24,368 - INFO - Contact created: Carol Williams
+2025-02-24 11:39:24,368 - WARNING - Duplicate contact 'Carol Williams' not added.
+2025-02-24 11:39:24,368 - INFO - Contact created: David Brown
+2025-02-24 11:39:24,369 - WARNING - Duplicate contact 'David Brown' not added.
+2025-02-24 11:39:24,369 - INFO - Contact created: Eve Adams
+2025-02-24 11:39:24,370 - WARNING - Duplicate contact 'Eve Adams' not added.
+2025-02-24 11:39:24,370 - ERROR - Error adding contact: Phone number must be 10 or 12 digits long.
+2025-02-24 11:39:24,371 - INFO - Contact created: James Wilson
+2025-02-24 11:39:24,371 - INFO - Contact 'James Wilson' added to book1.
+2025-02-24 11:39:24,372 - INFO - Contact created: Sophie Martin
+2025-02-24 11:39:24,372 - INFO - Contact 'Sophie Martin' added to book1.
+2025-02-24 11:39:24,372 - INFO - Contact created: Liam Patel
+2025-02-24 11:39:24,372 - INFO - Contact 'Liam Patel' added to book1.
+2025-02-24 11:39:24,373 - INFO - Contact created: Olivia Nguyen
+2025-02-24 11:39:24,373 - INFO - Contact 'Olivia Nguyen' added to book1.
+2025-02-24 11:39:24,373 - INFO - Contact created: Ethan Garcia
+2025-02-24 11:39:24,373 - INFO - Contact 'Ethan Garcia' added to book1.
+2025-02-24 11:39:24,374 - INFO - Contact created: Isabella Rossi
+2025-02-24 11:39:24,374 - INFO - Contact 'Isabella Rossi' added to book1.
+2025-02-24 11:39:24,375 - INFO - Loaded book1 from CSV file book1.csv
