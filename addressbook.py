@@ -306,6 +306,57 @@ class AddressBook:
             logging.error(f"Error loading from CSV file {filename}: {e}")
             print(f"Error loading from CSV file: {e}")
 
+    def save_to_text_file(self, filename):
+        """
+        Description:
+            Saves all contacts in the address book to a plain text file using basic File IO.
+
+        Parameters:
+            filename (str): The name of the plain text file to save the contacts to.
+
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'w') as file:
+                for contact in self.contacts:
+                    line = f"{contact.first_name},{contact.last_name},{contact.phone},{contact.email},{contact.address},{contact.city},{contact.state},{contact.zip_code}\n"
+                    file.write(line)
+            logging.info(f"Saved {self.book_name} to plain text file {filename}")
+            print(f"Address Book '{self.book_name}' saved to plain text file {filename}.")
+        except Exception as e:
+            logging.error(f"Error saving to plain text file {filename}: {e}")
+            print(f"Error saving to plain text file: {e}")
+
+    def load_from_text_file(self, filename):
+        """
+        Description:
+            Loads contacts from a plain text file into the address book using basic File IO.
+
+        Parameters:
+            filename (str): The name of the plain text file to load contacts from.
+
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'r') as file:
+                for line in file:
+                    fields = line.strip().split(',')
+                    if len(fields) == 8:
+                        first_name, last_name, phone, email, address, city, state, zip_code = fields
+                        self.add_contact(first_name, last_name, phone, email, address, city, state, zip_code)
+                    else:
+                        logging.warning(f"Skipping malformed line in {filename}: {line.strip()}")
+            logging.info(f"Loaded {self.book_name} from plain text file {filename}")
+            print(f"Address Book '{self.book_name}' loaded from plain text file {filename}.")
+        except FileNotFoundError:
+            logging.info(f"No plain text file {filename} found, starting with empty address book.")
+            print(f"No plain text file {filename} found, starting with empty address book.")
+        except Exception as e:
+            logging.error(f"Error loading from plain text file {filename}: {e}")
+            print(f"Error loading from plain text file: {e}")
+
 class AddressBookSystem:
     """
     Description:
@@ -502,9 +553,11 @@ def main():
         print("9. Count Contacts by City and State")
         print("10. Display Contacts Sorted by Name")
         print("11. Display Contacts Sorted by ZIP")
-        print("12. Save Address Book to CSV File")
-        print("13. Load Address Book from CSV File")
-        print("14. Exit")
+        print("12. Save Address Book to IO File")
+        print("13. Load Address Book from IO File")
+        print("14. Save Address Book to CSV File")
+        print("15. Load Address Book from CSV File")
+        print("16. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -588,11 +641,27 @@ def main():
             book_name = input("Enter Address Book name: ").strip()
             address_book = system.get_address_book(book_name)
             if address_book:
+                filename = input("Enter plain IO filename to save to (e.g., 'book.txt'): ").strip()
+                address_book.save_to_text_file(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "13":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter plain IO filename to load from (e.g., 'book.txt'): ").strip()
+                address_book.load_from_text_file(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "14":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
                 filename = input("Enter CSV filename to save to (e.g., 'book.csv'): ").strip()
                 address_book.save_to_file(filename)
             else:
                 print(f"Address Book '{book_name}' does not exist!")
-        elif choice == "13":
+        elif choice == "15":
             book_name = input("Enter Address Book name: ").strip()
             address_book = system.get_address_book(book_name)
             if address_book:
@@ -600,7 +669,7 @@ def main():
                 address_book.load_from_file(filename)
             else:
                 print(f"Address Book '{book_name}' does not exist!")
-        elif choice == "14":
+        elif choice == "16":
             print("Exiting...")
             break
         else:
