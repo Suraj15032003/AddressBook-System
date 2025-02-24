@@ -1,7 +1,8 @@
 import re  
 import logging
 from collections import Counter
-import csv  # Added for CSV functionality
+import csv 
+import json  
 
 # Configure logging
 logging.basicConfig(
@@ -169,7 +170,6 @@ class AddressBook:
             logging.info(f"{self.book_name} Address Book is empty.")
             return
         
-        # Sort contacts by first name then last name
         sorted_contacts = sorted(self.contacts, key=lambda contact: (contact.first_name.lower(), contact.last_name.lower()))
         print(f"\nContacts in {self.book_name} (Sorted by Name):")
         for contact in sorted_contacts:
@@ -189,7 +189,6 @@ class AddressBook:
             logging.info(f"{self.book_name} Address Book is empty.")
             return
         
-        # Sort contacts by ZIP code
         sorted_contacts = sorted(self.contacts, key=lambda contact: contact.zip_code)
         print(f"\nContacts in {self.book_name} (Sorted by ZIP):")
         for contact in sorted_contacts:
@@ -253,6 +252,57 @@ class AddressBook:
     def save_to_file(self, filename):
         """
         Description:
+            Saves all contacts in the address book to a plain text file using basic File IO.
+
+        Parameters:
+            filename (str): The name of the file to save the contacts to.
+
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'w') as file:
+                for contact in self.contacts:
+                    line = f"{contact.first_name},{contact.last_name},{contact.phone},{contact.email},{contact.address},{contact.city},{contact.state},{contact.zip_code}\n"
+                    file.write(line)
+            logging.info(f"Saved {self.book_name} to plain text file {filename}")
+            print(f"Address Book '{self.book_name}' saved to plain text file {filename}.")
+        except Exception as e:
+            logging.error(f"Error saving to plain text file {filename}: {e}")
+            print(f"Error saving to plain text file: {e}")
+
+    def load_from_file(self, filename):
+        """
+        Description:
+            Loads contacts from a plain text file into the address book using basic File IO.
+
+        Parameters:
+            filename (str): The name of the file to load contacts from.
+
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'r') as file:
+                for line in file:
+                    fields = line.strip().split(',')
+                    if len(fields) == 8:
+                        first_name, last_name, phone, email, address, city, state, zip_code = fields
+                        self.add_contact(first_name, last_name, phone, email, address, city, state, zip_code)
+                    else:
+                        logging.warning(f"Skipping malformed line in {filename}: {line.strip()}")
+            logging.info(f"Loaded {self.book_name} from plain text file {filename}")
+            print(f"Address Book '{self.book_name}' loaded from plain text file {filename}.")
+        except FileNotFoundError:
+            logging.info(f"No plain text file {filename} found, starting with empty address book.")
+            print(f"No plain text file {filename} found, starting with empty address book.")
+        except Exception as e:
+            logging.error(f"Error loading from plain text file {filename}: {e}")
+            print(f"Error loading from plain text file: {e}")
+
+    def save_to_csv(self, filename):
+        """
+        Description:
             Saves all contacts in the address book to a CSV file using the csv module.
 
         Parameters:
@@ -264,9 +314,7 @@ class AddressBook:
         try:
             with open(filename, 'w', newline='') as file:
                 writer = csv.writer(file)
-                # Write header row
                 writer.writerow(['first_name', 'last_name', 'phone', 'email', 'address', 'city', 'state', 'zip_code'])
-                # Write contact data
                 for contact in self.contacts:
                     writer.writerow([contact.first_name, contact.last_name, contact.phone, contact.email,
                                    contact.address, contact.city, contact.state, contact.zip_code])
@@ -276,7 +324,7 @@ class AddressBook:
             logging.error(f"Error saving to CSV file {filename}: {e}")
             print(f"Error saving to CSV file: {e}")
 
-    def load_from_file(self, filename):
+    def load_from_csv(self, filename):
         """
         Description:
             Loads contacts from a CSV file into the address book using the csv module.
@@ -290,7 +338,6 @@ class AddressBook:
         try:
             with open(filename, 'r', newline='') as file:
                 reader = csv.DictReader(file)
-                # Ensure header matches expected fields
                 expected_fields = {'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'state', 'zip_code'}
                 if not expected_fields.issubset(reader.fieldnames):
                     raise ValueError("CSV file does not contain all required fields.")
@@ -305,6 +352,73 @@ class AddressBook:
         except Exception as e:
             logging.error(f"Error loading from CSV file {filename}: {e}")
             print(f"Error loading from CSV file: {e}")
+
+    def save_to_json(self, filename):
+        """
+        Description:
+            Saves all contacts in the address book to a JSON file using the json module.
+
+        Parameters:
+            filename (str): The name of the JSON file to save the contacts to.
+
+        Returns:
+            None
+        """
+        try:
+            contacts_list = [
+                {
+                    "first_name": contact.first_name,
+                    "last_name": contact.last_name,
+                    "phone": contact.phone,
+                    "email": contact.email,
+                    "address": contact.address,
+                    "city": contact.city,
+                    "state": contact.state,
+                    "zip_code": contact.zip_code
+                }
+                for contact in self.contacts
+            ]
+            with open(filename, 'w') as file:
+                json.dump(contacts_list, file, indent=4)
+            logging.info(f"Saved {self.book_name} to JSON file {filename}")
+            print(f"Address Book '{self.book_name}' saved to JSON file {filename}.")
+        except Exception as e:
+            logging.error(f"Error saving to JSON file {filename}: {e}")
+            print(f"Error saving to JSON file: {e}")
+
+    def load_from_json(self, filename):
+        """
+        Description:
+            Loads contacts from a JSON file into the address book using the json module.
+
+        Parameters:
+            filename (str): The name of the JSON file to load contacts from.
+
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'r') as file:
+                contacts_list = json.load(file)
+                for contact_data in contacts_list:
+                    self.add_contact(
+                        contact_data["first_name"],
+                        contact_data["last_name"],
+                        contact_data["phone"],
+                        contact_data["email"],
+                        contact_data["address"],
+                        contact_data["city"],
+                        contact_data["state"],
+                        contact_data["zip_code"]
+                    )
+            logging.info(f"Loaded {self.book_name} from JSON file {filename}")
+            print(f"Address Book '{self.book_name}' loaded from JSON file {filename}.")
+        except FileNotFoundError:
+            logging.info(f"No JSON file {filename} found, starting with empty address book.")
+            print(f"No JSON file {filename} found, starting with empty address book.")
+        except Exception as e:
+            logging.error(f"Error loading from JSON file {filename}: {e}")
+            print(f"Error loading from JSON file: {e}")
 
 class AddressBookSystem:
     """
@@ -382,13 +496,11 @@ class AddressBookSystem:
             print("Please provide a city to search.")
             return
 
-        # Collect all contacts across address books
         all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
         if not all_contacts:
             print("No contacts available in any address book.")
             return
 
-        # Filter contacts by the specified city
         results = [contact for contact in all_contacts if contact.city.lower() == city.lower()]
         
         if results:
@@ -396,13 +508,11 @@ class AddressBookSystem:
             for result in results:
                 print(result)
             
-            # Count by city (will only show the searched city due to filter)
             city_counts = Counter(contact.city.lower() for contact in results)
             print("\nContact Count by City:")
             for city_name, count in city_counts.items():
                 print(f"{city_name}: {count}")
 
-            # Count by state for the filtered results
             state_counts = Counter(contact.state.lower() for contact in results)
             print("\nContact Count by State:")
             for state_name, count in state_counts.items():
@@ -425,13 +535,11 @@ class AddressBookSystem:
             print("Please provide a State to search.")
             return
 
-        # Collect all contacts across address books
         all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
         if not all_contacts:
             print("No contacts available in any address book.")
             return
 
-        # Filter contacts by the specified state
         results = [contact for contact in all_contacts if contact.state.lower() == state.lower()]
         
         if results:
@@ -439,13 +547,11 @@ class AddressBookSystem:
             for result in results:
                 print(result)
             
-            # Count by city for the filtered results
             city_counts = Counter(contact.city.lower() for contact in results)
             print("\nContact Count by City:")
             for city_name, count in city_counts.items():
                 print(f"{city_name}: {count}")
 
-            # Count by state (will only show the searched state due to filter)
             state_counts = Counter(contact.state.lower() for contact in results)
             print("\nContact Count by State:")
             for state_name, count in state_counts.items():
@@ -461,20 +567,17 @@ class AddressBookSystem:
         Returns:
             None
         """
-        # Collect all contacts across address books
         all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
         
         if not all_contacts:
             print("No contacts available in any address book.")
             return
 
-        # Count by city
         city_counts = Counter(contact.city.lower() for contact in all_contacts)
         print("\nTotal Contact Count by City:")
         for city_name, count in sorted(city_counts.items()):
             print(f"{city_name}: {count}")
 
-        # Count by state
         state_counts = Counter(contact.state.lower() for contact in all_contacts)
         print("\nTotal Contact Count by State:")
         for state_name, count in sorted(state_counts.items()):
@@ -502,9 +605,13 @@ def main():
         print("9. Count Contacts by City and State")
         print("10. Display Contacts Sorted by Name")
         print("11. Display Contacts Sorted by ZIP")
-        print("12. Save Address Book to CSV File")
-        print("13. Load Address Book from CSV File")
-        print("14. Exit")
+        print("12. Save Address Book to IO File")
+        print("13. Load Address Book from IO File")
+        print("14. Save Address Book to CSV File")
+        print("15. Load Address Book from CSV File")
+        print("16. Save Address Book to JSON File")
+        print("17. Load Address Book from JSON File")
+        print("18. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -588,7 +695,7 @@ def main():
             book_name = input("Enter Address Book name: ").strip()
             address_book = system.get_address_book(book_name)
             if address_book:
-                filename = input("Enter CSV filename to save to (e.g., 'book.csv'): ").strip()
+                filename = input("Enter io filename to save to (e.g., 'book.txt'): ").strip()
                 address_book.save_to_file(filename)
             else:
                 print(f"Address Book '{book_name}' does not exist!")
@@ -596,11 +703,43 @@ def main():
             book_name = input("Enter Address Book name: ").strip()
             address_book = system.get_address_book(book_name)
             if address_book:
-                filename = input("Enter CSV filename to load from (e.g., 'book.csv'): ").strip()
+                filename = input("Enter io filename to load from (e.g., 'book.txt'): ").strip()
                 address_book.load_from_file(filename)
             else:
                 print(f"Address Book '{book_name}' does not exist!")
         elif choice == "14":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter CSV filename to save to (e.g., 'book.csv'): ").strip()
+                address_book.save_to_csv(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "15":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter CSV filename to load from (e.g., 'book.csv'): ").strip()
+                address_book.load_from_csv(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "16":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter JSON filename to save to (e.g., 'book.json'): ").strip()
+                address_book.save_to_json(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "17":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter JSON filename to load from (e.g., 'book.json'): ").strip()
+                address_book.load_from_json(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "18":
             print("Exiting...")
             break
         else:

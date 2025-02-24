@@ -1,0 +1,82 @@
+[
+    {
+        "first_name": "suraj",
+        "last_name": "thakur",
+        "phone": "1234567890",
+        "email": "suraj@gmail.com",
+        "address": "chitkara",
+        "city": "rajpura",
+        "state": "punjab",
+        "zip_code": "123456"
+    },
+    {
+        "first_name": "surya",
+        "last_name": "rajput",
+        "phone": "2345678901",
+        "email": "surya@gmail.com",
+        "address": "cu",
+        "city": "turing",
+        "state": "pb",
+        "zip_code": "123456"
+    },
+    {
+        "first_name": "James",
+        "last_name": "Wilson",
+        "phone": "2345678901",
+        "email": "james.wilson@email.com",
+        "address": "101 Pine Ave",
+        "city": "Miami",
+        "state": "FL",
+        "zip_code": "331001"
+    },
+    {
+        "first_name": "Emma",
+        "last_name": "Thompson",
+        "phone": "4155551234",
+        "email": "emma.thompson@email.com",
+        "address": "789 Sunset Blvd",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip_code": "941001"
+    },
+    {
+        "first_name": "Lucas",
+        "last_name": "Hernandez",
+        "phone": "3055555678",
+        "email": "lucas.hernandez@email.com",
+        "address": "456 Ocean Dr",
+        "city": "Miami",
+        "state": "FL",
+        "zip_code": "331003"
+    },
+    {
+        "first_name": "Ava",
+        "last_name": "Mitchell",
+        "phone": "5125559012",
+        "email": "ava.mitchell@email.com",
+        "address": "123 River Rd",
+        "city": "Austin",
+        "state": "TX",
+        "zip_code": "787001"
+    },
+    {
+        "first_name": "Noah",
+        "last_name": "Bennett",
+        "phone": "6175553456",
+        "email": "noah.bennett@email.com",
+        "address": "321 Harbor Ln",
+        "city": "Boston",
+        "state": "MA",
+        "zip_code": "021001"
+    },
+    {
+        "first_name": "Mia",
+        "last_name": "Sanchez",
+        "phone": "7025557890",
+        "email": "mia.sanchez@email.com",
+        "address": "654 Desert St",
+        "city": "Las Vegas",
+        "state": "NV",
+        "zip_code": "891001"
+    }
+]

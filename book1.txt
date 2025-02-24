@@ -1,5 +1,8 @@
-Alice,Smith,1234567890,alice.smith@email.com,123 Main St,New York,NY,100001
-Bob,Johnson,9876543210,bob.johnson@email.com,456 Elm St,Los Angeles,CA,900001
-Carol,Williams,5556667777,carol.w@email.com,789 Oak St,Chicago,IL,606001
-David,Brown,4445556666,david.brown@email.com,321 Pine St,New York,NY,100002
-Eve,Adams,3334445555,eve.adams@email.com,654 Birch St,Los Angeles,CA,900002
+Noah,Bennett,6175553456,noah.bennett@email.com,321 Harbor Ln,Boston,MA,021001
+surya,rajput,2345678901,surya@gmail.com,cu,turing,pb,123456
+Mia,Sanchez,7025557890,mia.sanchez@email.com,654 Desert St,Las Vegas,NV,891001
+Emma,Thompson,4155551234,emma.thompson@email.com,789 Sunset Blvd,San Francisco,CA,941001
+suraj,thakur,1234567890,suraj@gmail.com,chitkara,rajpura,punjab,123456
+Lucas,Hernandez,3055555678,lucas.hernandez@email.com,456 Ocean Dr,Miami,FL,331003
+James,Wilson,2345678901,james.wilson@email.com,101 Pine Ave,Miami,FL,331001
+Ava,Mitchell,5125559012,ava.mitchell@email.com,123 River Rd,Austin,TX,787001
