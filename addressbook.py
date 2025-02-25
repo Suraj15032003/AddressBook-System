@@ -1,7 +1,5 @@
 import logging
-import os
 import re
-
 
 # Configure logging
 logging.basicConfig(
