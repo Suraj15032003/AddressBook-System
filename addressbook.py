@@ -20,15 +20,7 @@ class Contact:
         Represents a contact in an address book with personal details.
 
     Parameters:
-        first_name - First name of the contact.
-        last_name -Last name of the contact.
-        phone - Phone number of the contact.
-        email - Email address of the contact.
-        address - Street address of the contact.
-        city - City where the contact resides.
-        state - State where the contact resides.
-        zip_code - 6-digit postal code of the contact.
-
+        None
     Returns:
         None
 
@@ -61,7 +53,7 @@ class Contact:
             Checks equality between two contacts based on first and last names (case insensitive).
         
         Parameters:
-            other (Contact): Another contact to compare.
+            self ,other
         
         Returns:
             bool: True if first and last names match (case insensitive), False otherwise.
@@ -75,7 +67,8 @@ class Contact:
         """
         Description:
             Defines a unique hash for a contact based on its first and last names.
-        
+        Parameter:
+            Self
         Returns:
             int: Hash of the contact's first and last names.
         """
@@ -85,7 +78,8 @@ class Contact:
         """
         Description:
             Returns a formatted string representation of the contact.
-        
+        Parameter:
+            Self
         Returns:
             str: Formatted contact details.
         """
@@ -97,8 +91,7 @@ class AddressBook:
         Represents an address book that stores multiple contacts.
 
     Parameters:
-        book_name (str): Name of the address book.
-
+       None
     Returns:
         None
     """
@@ -161,7 +154,8 @@ class AddressBook:
         """
         Description:
             Displays all contacts in the address book sorted alphabetically by name (first then last).
-
+        Parameter:
+            self
         Returns:
             None
         """
@@ -180,7 +174,8 @@ class AddressBook:
         """
         Description:
             Displays all contacts in the address book sorted by ZIP code.
-
+        Parameter:
+            self
         Returns:
             None
         """
@@ -255,8 +250,7 @@ class AddressBook:
             Saves all contacts in the address book to a plain text file using basic File IO.
 
         Parameters:
-            filename (str): The name of the file to save the contacts to.
-
+            self, filename 
         Returns:
             None
         """
@@ -277,7 +271,7 @@ class AddressBook:
             Loads contacts from a plain text file into the address book using basic File IO.
 
         Parameters:
-            filename (str): The name of the file to load contacts from.
+            self, filename
 
         Returns:
             None
@@ -306,7 +300,7 @@ class AddressBook:
             Saves all contacts in the address book to a CSV file using the csv module.
 
         Parameters:
-            filename (str): The name of the CSV file to save the contacts to.
+            self, filename
 
         Returns:
             None
@@ -330,7 +324,7 @@ class AddressBook:
             Loads contacts from a CSV file into the address book using the csv module.
 
         Parameters:
-            filename (str): The name of the CSV file to load contacts from.
+            self, filename
 
         Returns:
             None
@@ -359,7 +353,7 @@ class AddressBook:
             Saves all contacts in the address book to a JSON file using the json module.
 
         Parameters:
-            filename (str): The name of the JSON file to save the contacts to.
+           self, filename
 
         Returns:
             None
@@ -392,7 +386,7 @@ class AddressBook:
             Loads contacts from a JSON file into the address book using the json module.
 
         Parameters:
-            filename (str): The name of the JSON file to load contacts from.
+            self, filename
 
         Returns:
             None
@@ -438,7 +432,7 @@ class AddressBookSystem:
             Creates a new address book if it does not already exist.
         
         Parameters:
-            book_name (str): Name of the address book.
+           self, bookname.
         
         Returns:
             None
@@ -457,7 +451,7 @@ class AddressBookSystem:
             Retrieves an address book by name.
         
         Parameters:
-            book_name (str): Name of the address book.
+            self, bookname
         
         Returns:
             AddressBook: The requested address book or None if not found.
@@ -487,7 +481,7 @@ class AddressBookSystem:
             Searches for contacts based on city across multiple address books and displays count by city and state.
 
         Parameters:
-            city (str, optional): City to search.
+            self, city
 
         Returns:
             None
@@ -526,7 +520,7 @@ class AddressBookSystem:
             Searches for contacts based on state across multiple address books and displays count by city and state.
 
         Parameters:
-            state (str, optional): State to search.
+            self, state 
 
         Returns:
             None
